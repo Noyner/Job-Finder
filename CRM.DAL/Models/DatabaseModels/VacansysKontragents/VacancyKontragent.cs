@@ -22,7 +22,7 @@ namespace CRM.DAL.Models.DatabaseModels.ProductsKontragents
         
         public RelationType RelationType { get; set; }
     }
-    public class ProductKontragentConfiguration : IEntityTypeConfiguration<VacancyKontragent>
+    public class VacancyKontragentConfiguration : IEntityTypeConfiguration<VacancyKontragent>
     {
         public void Configure(EntityTypeBuilder<VacancyKontragent> item)
         {

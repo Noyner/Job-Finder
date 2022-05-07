@@ -21,7 +21,7 @@ namespace CRM.DAL.Models.DatabaseModels.VacansysUsers
         
         public VacancyUserRelationType RelationType { get; set; }
     }
-    public class ProductUserConfiguration : IEntityTypeConfiguration<VacancyUser>
+    public class VacancyUserConfiguration : IEntityTypeConfiguration<VacancyUser>
     {
         public void Configure(EntityTypeBuilder<VacancyUser> item)
         {
