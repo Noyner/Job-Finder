@@ -81,8 +81,6 @@ namespace CRM.IdentityServer
 
             services.ConfigureEmail(Configuration);
             services.ConfigureRazorTemplateEngine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-            
-            services.ConfigureEmailCodes(Configuration);
 
             if (!Env.IsDevelopment())
             {

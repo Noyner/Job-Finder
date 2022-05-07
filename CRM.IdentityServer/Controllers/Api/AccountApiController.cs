@@ -2,14 +2,12 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using CRM.DAL.Models.DatabaseModels.Users;
-using CRM.DAL.Models.DatabaseModels.Users.VerifyCodes.Enums;
 using CRM.IdentityServer.Extensions.Constants;
 using CRM.IdentityServer.Models;
 using CRM.IdentityServer.Services;
 using CRM.IdentityServer.ViewModels;
 using CRM.IdentityServer.ViewModels.Account;
 using CRM.ServiceCommon.Services;
-using CRM.ServiceCommon.Services.CodeService;
 using Hangfire;
 using IdentityServer4;
 using IdentityServer4.Events;
@@ -46,7 +44,6 @@ namespace CRM.IdentityServer.Controllers.Api
         private readonly IdentityServerDbContext identityServerDbContext;
         private readonly IEmailService emailService;
         private readonly IConfiguration configuration;
-        private readonly ICodeService codeService;
 
 
         public AccountController(
@@ -58,7 +55,7 @@ namespace CRM.IdentityServer.Controllers.Api
             SignInManager<User> signInManager,
             IdentityServerDbContext identityServerDbContext,
             IEmailService emailService,
-            IConfiguration configuration, ICodeService codeService)
+            IConfiguration configuration)
         {
             this.interaction = interaction;
             this.clientStore = clientStore;
@@ -69,7 +66,6 @@ namespace CRM.IdentityServer.Controllers.Api
             this.identityServerDbContext = identityServerDbContext;
             this.emailService = emailService;
             this.configuration = configuration;
-            this.codeService = codeService;
         }
 
         [HttpPost]
