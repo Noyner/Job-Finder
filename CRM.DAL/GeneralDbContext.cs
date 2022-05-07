@@ -50,7 +50,7 @@ namespace CRM.DAL
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .UseNpgsql("Host=db-crm-dev-v1.cvt8etkjrnau.eu-central-1.rds.amazonaws.com;Port=5432;Database=postgres;Username=crm;Password=crm123321;CommandTimeout=1000");
+                .UseNpgsql("Host=jf-db-dev.cvt8etkjrnau.eu-central-1.rds.amazonaws.com;Port=5432;Database=postgres;Username=postgres;Password=jfdbmaster123;CommandTimeout=1000");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
