@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text.Json.Serialization;
-using ClosedXML.Excel;
 using CRM.DAL.Models.DatabaseModels.Users;
 using CRM.IdentityServer.Extensions.Constants;
 using CRM.ServiceCommon.Configurations;
 using CRM.ServiceCommon.Middlewares;
 using CRM.User.WebApp.Configurations;
 using CRM.User.WebApp.Models.Basic;
-using CRM.User.WebApp.Services;
-using CRM.User.WebApp.Services.PayCardValidationService;
-using CRM.User.WebApp.Services.ProductBuy;
 using FluentValidation.AspNetCore;
 using Hangfire;
 using Hangfire.Dashboard;
@@ -177,12 +173,6 @@ namespace CRM.User.WebApp
             
             services.ConfigureDbEventHostedService(Configuration);
 
-            if(Env.IsDevelopment())
-            {
-                services.AddScoped<IProductBuyService, ProductBuyServiceMock>();
-                services.AddScoped<IPayCardValidationService, PayCardValidationServiceMock>();
-            }
-            
             services.ConfigureAutoMapper();
 
             services.AddAutoMapper(config =>

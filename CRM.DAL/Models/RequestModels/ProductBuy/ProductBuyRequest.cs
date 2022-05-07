@@ -8,7 +8,7 @@ namespace CRM.DAL.Models.RequestModels.ProductBuy
     {
         public int Id { get; set; }
         
-        // public List<Product> Products { get; set; }
+        // public List<Vacancy> Products { get; set; }
         
         public string UserId { get; set; }
         

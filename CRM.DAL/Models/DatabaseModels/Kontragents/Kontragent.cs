@@ -25,7 +25,7 @@ namespace CRM.DAL.Models.DatabaseModels.Kontragents
         
         public ICollection<KontragentUser> KontragentUsers { get; set; }
         
-        public ICollection<ProductKontragent> ProductKontragents { get; set; }
+        public ICollection<VacancyKontragent> VacancyKontragents { get; set; }
     }
     
     public class KontragentConfiguration : IEntityTypeConfiguration<Kontragent>
@@ -36,7 +36,7 @@ namespace CRM.DAL.Models.DatabaseModels.Kontragents
                 .WithOne(r => r.Kontragent)
                 .HasForeignKey(r => r.KontragentId);
             
-            item.HasMany(i => i.ProductKontragents)
+            item.HasMany(i => i.VacancyKontragents)
                 .WithOne(r => r.Kontragent)
                 .HasForeignKey(r => r.KontragentId);
             

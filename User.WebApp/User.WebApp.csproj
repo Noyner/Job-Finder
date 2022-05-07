@@ -88,10 +88,9 @@
       </None>
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="Clients" />
-      <Folder Include="Helpers" />
-      <Folder Include="Hubs" />
-      <Folder Include="Views\Email" />
+      <Folder Include="Models\Basic\Product" />
+      <Folder Include="Models\Basic\ProductUser" />
+      <Folder Include="Models\Request" />
     </ItemGroup>
     
     <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">

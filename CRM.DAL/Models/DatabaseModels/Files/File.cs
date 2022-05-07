@@ -23,7 +23,6 @@ namespace CRM.DAL.Models.DatabaseModels.Files
         
         public FileType Type { get; set; }
         
-        public ICollection<ProductFile.ProductFile> ProductFiles { get; set; }
         
         
     }
@@ -31,10 +30,7 @@ namespace CRM.DAL.Models.DatabaseModels.Files
     {
         public void Configure(EntityTypeBuilder<File> item)
         {
-            item.HasMany(i => i.ProductFiles)
-                .WithOne(i => i.File)
-                .HasForeignKey(i => i.FileId);
-            
+
         }
     }
 }

@@ -1,23 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using CRM.DAL.Models.DatabaseModels.EmailChanges;
-using CRM.DAL.Models.DatabaseModels.Users.VerifyCodes.Enums;
-using CRM.DAL.Models.RequestModels.ChangeEmail;
 using CRM.DAL.Models.RequestModels.ChangePassword;
-using CRM.IdentityServer.Extensions.Constants;
 using CRM.ServiceCommon.Services.CodeService;
 using CRM.User.WebApp.Models.Basic;
 using CRM.User.WebApp.Models.Basic.User.UserProfileDto;
-using CRM.User.WebApp.Models.Request;
-using CRM.User.WebApp.Services;
-using Hangfire;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Routing;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -61,8 +51,7 @@ namespace CRM.User.WebApp.Controllers
             var user = await UserDbContext.Users
                 .IncludeOptimized(i => i.UserRoles.Select(ur => ur.Role))
                 .IncludeOptimized(i=>i.KontragentUsers.Select(r=>r.Kontragent))
-                .IncludeOptimized(i=>i.ProductUsers.Select(r=>r.Product))
-                .IncludeOptimized(r=>r.ProductComments)
+                .IncludeOptimized(i=>i.VacancyUsers.Select(r=>r.Vacancy))
                 .IncludeOptimized(r=>r.UserClaims)
                 .FirstOrDefaultAsync(i => i.Id == userId);
             
@@ -109,117 +98,6 @@ namespace CRM.User.WebApp.Controllers
             var result= await userManager.ChangePasswordAsync(user, request.OldPassword, request.NewPassword);
             await UserDbContext.SaveChangesAsync();
             return result;
-        }
-
-        /// <summary>
-        ///     Update User Email.
-        /// </summary>
-        /// <response code="200">The User password was successfully changed.</response>
-         /// <response code="400">The User email same with previous.</response>
-         /// <response code="400">Code generating error.</response>
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(JsonResult), StatusCodes.Status200OK)]
-        [ODataRoute("RequestEmailChange")]
-        public async Task<ActionResult> PostRequestEmailChange([FromBody] ChangeEmailRequest request)
-        {
-
-            var user = await userManager.GetUserAsync(User);
-
-            if (request.NewEmail == user.Email)
-            {
-                return new JsonResult(new
-                {
-                    Code = 400,
-                    Message = $"New email same with previous"
-                });
-            }
-            
-            if (await userManager.FindByEmailAsync(request.NewEmail)!=null)
-            {
-                return new JsonResult(new
-                {
-                    Code = 400,
-                    Message = $"User with such email already exists"
-                });
-            }
-
-            var codeResult = await codeService.GenerateCodeAsync(user.Email, VerifyCodeType.ChangeEmail);
-
-            if (!codeResult.IsSucceed())
-            {
-                return new JsonResult(new
-                {
-                    Code = 400,
-                    Message = $"{codeResult.GetErrorsString()}"
-                });
-            }
-
-
-            BackgroundJob.Enqueue<EmailSenderService>(j =>
-                j.SendVerifyCodeEmail(request.NewEmail, codeResult.Code, VerifyCodeType.ChangeEmail));
-
-            await UserDbContext.EmailChanges.AddAsync(new EmailChange
-            {
-                UserId = user.Id,
-                NewEmail = request.NewEmail,
-                Confirmed = false,
-                CreatedAt = DateTime.Now,
-                UserToken = await userManager.GenerateChangeEmailTokenAsync(user,request.NewEmail)
-            });
-            await UserDbContext.SaveChangesAsync();
-            
-            return new JsonResult(new
-            {
-                Code = 200,
-                Message = "Письмо с кодом подтверждения отправлено"
-            });
-        }
-
-        /// <summary>
-        ///     Update User Email.
-        /// </summary>
-        /// <response code="200">The User password was successfully changed.</response>
-        /// <response code="400">The User email same with previous.</response>
-        /// <response code="400">Code generating error.</response>
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(JsonResult), StatusCodes.Status204NoContent)]
-        [ODataRoute("ConfirmEmailChange")]
-        public async Task<ActionResult> PostConfirmEmailChange([FromBody] ChangeEmailConfirmationRequest request)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-
-            var user = await userManager.GetUserAsync(User);
-
-            var validateCodeResult =
-                await codeService.ValidateCodeAsync(user.Email, VerifyCodeType.ChangeEmail, request.Code);
-
-
-            if (!validateCodeResult.IsSucceed())
-            {
-                return BadRequest(validateCodeResult.GetErrorsString());
-            }
-
-            var emailChange = await UserDbContext
-                .EmailChanges
-                .OrderByDescending(i => i.CreatedAt)
-                .FirstOrDefaultAsync(i => i.UserId == user.Id
-                                          && !i.Confirmed);
-
-            var result = await userManager.ChangeEmailAsync(user, emailChange.NewEmail, emailChange.UserToken);
-
-            if (!result.Succeeded)
-            {
-                return BadRequest(result.Errors);
-            }
-
-            emailChange.Confirmed = true;
-
-            await UserDbContext.SaveChangesAsync();
-
-            return NoContent();
         }
         
     }

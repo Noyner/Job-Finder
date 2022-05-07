@@ -16,18 +16,18 @@ namespace CRM.DAL.Models.DatabaseModels.Tags
         
         public TagType Type { get; set; }
         
-        public Guid ProductId { get; set; }
+        public Guid VacancyId { get; set; }
         
-        public Product Product { get; set; }
+        public Vacancy Vacancy { get; set; }
     }
     
     public class TagConfiguration : IEntityTypeConfiguration<Tag>
     {
         public void Configure(EntityTypeBuilder<Tag> item)
         {
-            item.HasOne(i => i.Product)
+            item.HasOne(i => i.Vacancy)
                 .WithMany(i => i.Tags)
-                .HasForeignKey(i => i.ProductId);
+                .HasForeignKey(i => i.VacancyId);
             
         }
     }

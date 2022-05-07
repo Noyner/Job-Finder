@@ -14,11 +14,6 @@ namespace CRM.IdentityServer.ViewModels.Account
         [Display(Name="Адрес электронной почты")]
         public string Email { get; set; }
         
-        [Required]
-        [EmailAddress]
-        [Display(Name="Подтверждение адреса электронной почты")]
-        [Compare("Email", ErrorMessage = "Email и его подтверждение не совпадают.")]
-        public string EmailConfirm { get; set; }
         
         [Required]
         [Display(Name = "Пароль")]
