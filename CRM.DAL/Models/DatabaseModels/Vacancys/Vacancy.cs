@@ -40,7 +40,7 @@ namespace CRM.DAL.Models.DatabaseModels.Vacancys
 
     }
     
-    public class ProductConfiguration : IEntityTypeConfiguration<Vacancy>
+    public class VacancyConfiguration : IEntityTypeConfiguration<Vacancy>
     {
         public void Configure(EntityTypeBuilder<Vacancy> item)
         {

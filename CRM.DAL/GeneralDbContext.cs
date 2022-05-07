@@ -29,9 +29,9 @@ namespace CRM.DAL
         public DbSet<KontragentInfo> KontragentInfos { get; set; }
         public DbSet<Kontragent> Kontragents { get; set; }
         public DbSet<KontragentUser> KontragentUsers { get; set; }
-        public DbSet<Vacancy> Products { get; set; }
-        public DbSet<VacancyKontragent> ProductKontragents { get; set; }
-        public DbSet<VacancyUser> ProductUsers { get; set; }
+        public DbSet<Vacancy> Vacancys { get; set; }
+        public DbSet<VacancyKontragent> VacancyKontragents { get; set; }
+        public DbSet<VacancyUser> VacancyUsers { get; set; }
         public DbSet<Tag> Tags { get; set; }
 
 
@@ -64,9 +64,9 @@ namespace CRM.DAL
             modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
             
             modelBuilder.ApplyConfiguration(new TagConfiguration());
-            modelBuilder.ApplyConfiguration(new ProductUserConfiguration());
-            modelBuilder.ApplyConfiguration(new ProductKontragentConfiguration());
-            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new VacancyUserConfiguration());
+            modelBuilder.ApplyConfiguration(new VacancyKontragentConfiguration());
+            modelBuilder.ApplyConfiguration(new VacancyConfiguration());
             modelBuilder.ApplyConfiguration(new KontragentUserConfiguration());
             modelBuilder.ApplyConfiguration(new KontragentConfiguration());
             modelBuilder.ApplyConfiguration(new KontragentInfoConfiguration());
