@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -17,19 +18,21 @@ namespace CRM.DAL.Models.DatabaseModels.Users
         {
             item.HasMany(i => i.UserRoles).WithOne(i => i.Role).HasForeignKey(r => r.RoleId);
 
-            item.HasData(new[]
-            {
+            item.HasData(
+            
                 new Role()
                 {
+                    Id = Guid.NewGuid().ToString(),
                     Name = "user",
                     NormalizedName = "USER"
                 },
                 new Role()
                 {
+                    Id = Guid.NewGuid().ToString(),
                     Name = "kontragent",
                     NormalizedName = "KONTRAGENT"
-                },
-            });
+                }
+            );
         }
     }
 }
