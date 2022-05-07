@@ -25,5 +25,13 @@ namespace CRM.IdentityServer.ViewModels.Account
         [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
         public string PasswordConfirm { get; set; }
         
+        [Required]
+        [Display(Name = "Имя")] 
+        public string FirstName { get; set; }
+        
+        [Required]
+        [Display(Name = "Фамилия")] 
+        public string LastName { get; set; }
+        
     }
 }

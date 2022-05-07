@@ -7,6 +7,7 @@ using CRM.DAL.Models.DatabaseModels.Kontragents;
 using CRM.DAL.Models.DatabaseModels.KontragentUsers;
 using CRM.User.WebApp.Models.Basic;
 using Microsoft.AspNet.OData;
+using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -35,7 +36,9 @@ namespace CRM.User.WebApp.Controllers
 
 
         
-        [EnableQuery]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(IEnumerable<Kontragent>), StatusCodes.Status200OK)]
+        [EnableQuery(HandleNullPropagation = HandleNullPropagationOption.False)]
         public IActionResult Get()
         {
            var items= userDbContext.Kontragents
@@ -63,6 +66,7 @@ namespace CRM.User.WebApp.Controllers
             return StatusCode(StatusCodes.Status200OK, item);
         }
 
+        [Produces("application/json")]
         public async Task<IActionResult> Post([FromBody]Kontragent item)
         {
             var user = await userManager.GetUserAsync(User);

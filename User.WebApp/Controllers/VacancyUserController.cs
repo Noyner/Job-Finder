@@ -2,8 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using CRM.DAL.Models.DatabaseModels.ProductsUsers;
-using CRM.DAL.Models.DatabaseModels.VacansysUsers;
+using CRM.DAL.Models.DatabaseModels.VacancysUsers;
 using CRM.User.WebApp.Models.Basic;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Query;

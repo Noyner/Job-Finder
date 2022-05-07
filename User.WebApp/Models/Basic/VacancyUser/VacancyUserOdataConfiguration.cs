@@ -15,7 +15,7 @@ namespace CRM.User.WebApp.Models.Basic.VacancyUser
         /// <param name="apiVersion">The <see cref="ApiVersion">API version</see> associated with the <paramref name="builder" />.</param>
         public void Apply(ODataModelBuilder builder, ApiVersion apiVersion)
         {
-            var item = builder.EntitySet<DAL.Models.DatabaseModels.VacansysUsers.VacancyUser>(nameof(VacancyUser)).EntityType;
+            var item = builder.EntitySet<DAL.Models.DatabaseModels.VacancysUsers.VacancyUser>(nameof(VacancyUser)).EntityType;
             
             item.HasKey(p => p.Id);
         }

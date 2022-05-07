@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using CRM.DAL.Models.DatabaseModels.Tags;
-using CRM.DAL.Models.DatabaseModels.VacansysUsers;
+using CRM.DAL.Models.DatabaseModels.VacancysUsers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

@@ -1,11 +1,11 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using CRM.DAL.Models.DatabaseModels.ProductsUsers;
 using CRM.DAL.Models.DatabaseModels.Vacancys;
+using CRM.DAL.Models.DatabaseModels.VacansysUsers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CRM.DAL.Models.DatabaseModels.VacansysUsers
+namespace CRM.DAL.Models.DatabaseModels.VacancysUsers
 {
     public class VacancyUser
     {

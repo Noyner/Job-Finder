@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CRM.DAL.Models.DatabaseModels.KontragentUsers;
-using CRM.DAL.Models.DatabaseModels.ProductsUsers;
-using CRM.DAL.Models.DatabaseModels.VacansysUsers;
+using CRM.DAL.Models.DatabaseModels.VacancysUsers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -11,6 +10,10 @@ namespace CRM.DAL.Models.DatabaseModels.Users
 {
     public class User : IdentityUser
     {
+        public string FirstName { get; set; }
+        
+        public string LastName { get; set; }
+        
         public ICollection<UserRole> UserRoles { get; set; }
         
         public ICollection<UserClaim> UserClaims { get; set; }

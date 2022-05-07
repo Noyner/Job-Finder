@@ -1,11 +1,9 @@
-namespace CRM.DAL.Models.DatabaseModels.ProductsUsers
+namespace CRM.DAL.Models.DatabaseModels.VacansysUsers
 {
     public enum VacancyUserRelationType
     {
         Base,
-        InShoppingCart,
-        Like,
-        Dislike,
-        Owned,
+        Creator,
+        Applicant
     }
 }

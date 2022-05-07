@@ -41,7 +41,7 @@ namespace CRM.User.WebApp.Models.Basic
         
         public DbSet<VacancyKontragent> VacancyKontragents { get; set; }
         
-        public DbSet<DAL.Models.DatabaseModels.VacansysUsers.VacancyUser> VacancyUsers { get; set; }
+        public DbSet<DAL.Models.DatabaseModels.VacancysUsers.VacancyUser> VacancyUsers { get; set; }
         
         public DbSet<Tag> Tags { get; set; }
         
