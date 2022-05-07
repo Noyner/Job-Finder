@@ -8,7 +8,6 @@ using CRM.DAL.Models.DatabaseModels.ProductsKontragents;
 using CRM.DAL.Models.DatabaseModels.ProductsUsers;
 using CRM.DAL.Models.DatabaseModels.Tags;
 using CRM.DAL.Models.DatabaseModels.Users;
-using CRM.DAL.Models.DatabaseModels.Users.VerifyCodes;
 using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -24,9 +23,6 @@ namespace CRM.DAL
         public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
         
         public DbSet<Configuration> Configurations { get; set; }
-
-        public DbSet<VerifyCode> VerifyCodes { get; set; }
-        public DbSet<EmailVerifyCode> EmailVerifyCodes { get; set; }
 
         public DbSet<File> Files { get; set; }
         public DbSet<KontragentInfo> KontragentInfos { get; set; }

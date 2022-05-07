@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using CRM.DAL.Models.RequestModels.ChangePassword;
-using CRM.ServiceCommon.Services.CodeService;
 using CRM.User.WebApp.Models.Basic;
 using CRM.User.WebApp.Models.Basic.User.UserProfileDto;
 using Microsoft.AspNet.OData;
@@ -23,15 +22,13 @@ namespace CRM.User.WebApp.Controllers
     {
 
         private readonly IMapper mapper;
-        private readonly ICodeService codeService;
-       
+
         public UserController(ILogger<UserController> logger, UserDbContext userDbContext,
-            UserManager<DAL.Models.DatabaseModels.Users.User> userManager, IHttpContextAccessor httpContextAccessor, IMapper mapper, ICodeService codeService) : base(
+            UserManager<DAL.Models.DatabaseModels.Users.User> userManager, IHttpContextAccessor httpContextAccessor, IMapper mapper) : base(
             logger, userDbContext,
             userManager, httpContextAccessor)
         {
             this.mapper = mapper;
-            this.codeService = codeService;
         }
 
         /// <summary>
