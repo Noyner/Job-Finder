@@ -136,8 +136,6 @@ namespace CRM.User.WebApp
                 )
                 .PersistKeysToDbContext<UserDbContext>();
 
-            services.ConfigureEmail(Configuration);
-
             services.ConfigureRazorTemplateEngine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
 
             services.AddHangfire(config =>

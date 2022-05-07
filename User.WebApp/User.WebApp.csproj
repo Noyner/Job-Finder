@@ -88,8 +88,6 @@
       </None>
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="Models\Basic\Product" />
-      <Folder Include="Models\Basic\ProductUser" />
       <Folder Include="Models\Request" />
     </ItemGroup>
     

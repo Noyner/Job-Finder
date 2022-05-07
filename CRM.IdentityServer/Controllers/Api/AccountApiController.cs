@@ -42,7 +42,6 @@ namespace CRM.IdentityServer.Controllers.Api
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
         private readonly IdentityServerDbContext identityServerDbContext;
-        private readonly IEmailService emailService;
         private readonly IConfiguration configuration;
 
 
@@ -54,7 +53,6 @@ namespace CRM.IdentityServer.Controllers.Api
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             IdentityServerDbContext identityServerDbContext,
-            IEmailService emailService,
             IConfiguration configuration)
         {
             this.interaction = interaction;
@@ -64,7 +62,6 @@ namespace CRM.IdentityServer.Controllers.Api
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.identityServerDbContext = identityServerDbContext;
-            this.emailService = emailService;
             this.configuration = configuration;
         }
 

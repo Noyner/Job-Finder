@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
-using CRM.DAL.Models.DatabaseModels.Products;
+using CRM.DAL.Models.DatabaseModels.Vacancys;
 using CRM.User.WebApp.Models.Basic;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Query;

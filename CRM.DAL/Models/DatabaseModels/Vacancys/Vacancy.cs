@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using CRM.DAL.Models.DatabaseModels.ProductsUsers;
 using CRM.DAL.Models.DatabaseModels.Tags;
+using CRM.DAL.Models.DatabaseModels.VacansysUsers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CRM.DAL.Models.DatabaseModels.Products
+namespace CRM.DAL.Models.DatabaseModels.Vacancys
 {
     public class Vacancy
     {
@@ -59,7 +59,7 @@ namespace CRM.DAL.Models.DatabaseModels.Products
             
             item.HasMany(i => i.VacancyKontragents)
                 .WithOne(i => i.Vacancy)
-                .HasForeignKey(i => i.ProductId);
+                .HasForeignKey(i => i.VacancyId);
 
             item.Property(i => i.Priority)
                 .HasDefaultValue(0);

@@ -1,6 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using CRM.DAL.Models.DatabaseModels.Products;
+using CRM.DAL.Models.DatabaseModels.Vacancys;
 
 namespace CRM.DAL.Models.DatabaseModels.VacancyRequirements
 {

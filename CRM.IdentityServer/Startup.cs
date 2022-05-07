@@ -78,8 +78,7 @@ namespace CRM.IdentityServer
                     // can also be used to control the format of the API version in route templates
                     options.SubstituteApiVersionInUrl = true;
                 });
-
-            services.ConfigureEmail(Configuration);
+            
             services.ConfigureRazorTemplateEngine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
 
             if (!Env.IsDevelopment())

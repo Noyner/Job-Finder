@@ -37,11 +37,11 @@ namespace CRM.User.WebApp.Models.Basic
         
         
         
-        public DbSet<DAL.Models.DatabaseModels.Products.Vacancy> Vacancys { get; set; }
+        public DbSet<DAL.Models.DatabaseModels.Vacancys.Vacancy> Vacancys { get; set; }
         
         public DbSet<VacancyKontragent> VacancyKontragents { get; set; }
         
-        public DbSet<DAL.Models.DatabaseModels.ProductsUsers.VacancyUser> VacancyUsers { get; set; }
+        public DbSet<DAL.Models.DatabaseModels.VacansysUsers.VacancyUser> VacancyUsers { get; set; }
         
         public DbSet<Tag> Tags { get; set; }
         

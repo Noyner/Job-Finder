@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CRM.DAL.Models.DatabaseModels.KontragentUsers;
 using CRM.DAL.Models.DatabaseModels.ProductsUsers;
+using CRM.DAL.Models.DatabaseModels.VacansysUsers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

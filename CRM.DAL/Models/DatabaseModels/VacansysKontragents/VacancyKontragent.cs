@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using CRM.DAL.Models.DatabaseModels.Kontragents;
-using CRM.DAL.Models.DatabaseModels.Products;
+using CRM.DAL.Models.DatabaseModels.Vacancys;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -12,7 +12,7 @@ namespace CRM.DAL.Models.DatabaseModels.ProductsKontragents
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         
-        public Guid ProductId { get; set; }
+        public Guid VacancyId { get; set; }
         
         public Vacancy Vacancy { get; set; }
         
@@ -28,7 +28,7 @@ namespace CRM.DAL.Models.DatabaseModels.ProductsKontragents
         {
             item.HasOne(i => i.Vacancy)
                 .WithMany(r => r.VacancyKontragents)
-                .HasForeignKey(i => i.ProductId);
+                .HasForeignKey(i => i.VacancyId);
             
             item.HasOne(i => i.Kontragent)
                 .WithMany(r => r.VacancyKontragents)
