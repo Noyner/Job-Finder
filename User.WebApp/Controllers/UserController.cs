@@ -80,7 +80,7 @@ namespace CRM.User.WebApp.Controllers
 
             if (userId != key)
             {
-                return Forbid("Not own user");
+                return Forbid();
             }
             
             if (!ModelState.IsValid)
