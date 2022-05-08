@@ -9,6 +9,7 @@ using CRM.DAL.Models.DatabaseModels.ResumeSkill;
 using CRM.DAL.Models.DatabaseModels.Skill;
 using CRM.DAL.Models.DatabaseModels.Tags;
 using CRM.DAL.Models.DatabaseModels.Users;
+using CRM.DAL.Models.DatabaseModels.VacancyResumes;
 using CRM.DAL.Models.DatabaseModels.VacancySkills;
 using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
@@ -42,13 +43,13 @@ namespace CRM.User.WebApp.Models.Basic
         
         
         public DbSet<Skill> Skills { get; set; }
-        public DbSet<Resume> Resumes { get; set; }
+        public DbSet<DAL.Models.DatabaseModels.Resume.Resume> Resumes { get; set; }
         public DbSet<ResumeSkill> ResumeSkills { get; set; }
         public DbSet<VacancySkill> VacancySkills { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<DAL.Models.DatabaseModels.Vacancies.Vacancy> Vacancies { get; set; }
-        public DbSet<DAL.Models.DatabaseModels.VacancyUsers.VacancyUser> VacancyUsers { get; set; }
+        public DbSet<VacancyResume> VacancyUsers { get; set; }
         
         public DbSet<Skill> Tags { get; set; }
         

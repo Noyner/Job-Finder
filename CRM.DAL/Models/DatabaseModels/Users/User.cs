@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using CRM.DAL.Models.DatabaseModels.Files;
 using CRM.DAL.Models.DatabaseModels.KontragentUsers;
-using CRM.DAL.Models.DatabaseModels.VacancyUsers;
+using CRM.DAL.Models.DatabaseModels.VacancyResumes;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -31,7 +31,7 @@ namespace CRM.DAL.Models.DatabaseModels.Users
 
         public bool IsActive { get; set; }
         
-        public ICollection<VacancyUser> VacancyUsers { get; set; }
+        public ICollection<VacancyResume> VacancyUsers { get; set; }
         
         public ICollection<KontragentUser> KontragentUsers { get; set; }
 
@@ -53,10 +53,7 @@ namespace CRM.DAL.Models.DatabaseModels.Users
             item.HasMany(i => i.UserClaims)
                 .WithOne(i => i.User)
                 .HasForeignKey(i=>i.UserId);
-
-            item.HasMany(i => i.VacancyUsers)
-                .WithOne(i => i.User)
-                .HasForeignKey(i => i.UserId);
+            
 
             item.Property(i => i.RegistrationDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP");

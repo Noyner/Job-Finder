@@ -11,8 +11,8 @@ using CRM.DAL.Models.DatabaseModels.Skill;
 using CRM.DAL.Models.DatabaseModels.Tags;
 using CRM.DAL.Models.DatabaseModels.Users;
 using CRM.DAL.Models.DatabaseModels.Vacancies;
+using CRM.DAL.Models.DatabaseModels.VacancyResumes;
 using CRM.DAL.Models.DatabaseModels.VacancySkills;
-using CRM.DAL.Models.DatabaseModels.VacancyUsers;
 using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -34,7 +34,7 @@ namespace CRM.DAL
         public DbSet<Kontragent> Kontragents { get; set; }
         public DbSet<KontragentUser> KontragentUsers { get; set; }
         public DbSet<Vacancy> Vacancies { get; set; }
-        public DbSet<VacancyUser> VacancyUsers { get; set; }
+        public DbSet<VacancyResume> VacancyUsers { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Resume> Resumes { get; set; }
         public DbSet<ResumeSkill> ResumeSkills { get; set; }

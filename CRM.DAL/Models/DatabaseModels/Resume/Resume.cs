@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using CRM.DAL.Models.DatabaseModels.ResumeSkill;
 using CRM.DAL.Models.DatabaseModels.Tags;
 using CRM.DAL.Models.DatabaseModels.Users;
+using CRM.DAL.Models.DatabaseModels.VacancyResumes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -32,6 +33,8 @@ namespace CRM.DAL.Models.DatabaseModels.Resume
         
         public ICollection<ResumeSkill.ResumeSkill> ResumeSkills { get; set; }
         
+        public ICollection<VacancyResume> VacancyResumes { get; set; }
+
         public Guid? CityId { get; set; }
 
     }

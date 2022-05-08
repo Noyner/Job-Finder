@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CRM.DAL.Models.DatabaseModels.Skill
 {
+    [Table("Skills")]
     public class Skill
     {
         //Для особенностей - возможность повторного использования и более формального вида

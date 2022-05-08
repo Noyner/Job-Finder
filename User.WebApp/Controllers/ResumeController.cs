@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using CRM.DAL.Models.DatabaseModels.Vacancies;
-using CRM.IdentityServer.Extensions.Constants;
+using CRM.DAL.Models.DatabaseModels.Resume;
 using CRM.User.WebApp.Models.Basic;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNet.OData.Routing;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,14 +15,14 @@ using Z.EntityFramework.Plus;
 
 namespace CRM.User.WebApp.Controllers
 {
-    [ODataRoutePrefix(nameof(Vacancy))]
-    public class VacancyController : BaseController<VacancyController>
+    [ODataRoutePrefix(nameof(Resume))]
+    public class ResumeController : BaseController<ResumeController>
     {
 
         private readonly IMapper mapper;
         private readonly UserDbContext userDbContext;
         
-        public VacancyController(ILogger<VacancyController> logger, UserDbContext userDbContext,
+        public ResumeController(ILogger<ResumeController> logger, UserDbContext userDbContext,
             UserManager<DAL.Models.DatabaseModels.Users.User> userManager, IHttpContextAccessor httpContextAccessor, IMapper mapper) : base(
             logger, userDbContext,
             userManager, httpContextAccessor)
@@ -39,31 +37,31 @@ namespace CRM.User.WebApp.Controllers
         /// <returns>The requested Vacancies.</returns>
         /// <response code="200">The Vacancies was successfully retrieved.</response>
         [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<Vacancy>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<Resume>), StatusCodes.Status200OK)]
         [EnableQuery(HandleNullPropagation = HandleNullPropagationOption.False)]
-        public IEnumerable<Vacancy> Get()
+        public IEnumerable<Resume> Get()
         {
             QueryIncludeOptimizedManager.AllowIncludeSubPath = true;
 
-            return userDbContext.Vacancies
-                .IncludeOptimized(p => p.VacancySkills)
+            return userDbContext.Resumes
+                .IncludeOptimized(p => p.ResumeSkills.Select(r=>r.Skill))
                 .IncludeOptimized(r=>r.Language)
                 .IncludeOptimized(r=>r.City)
-                .IncludeOptimized(p => p.Kontragent);
+                .IncludeOptimized(p => p.Creator);
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-            Roles = UserRoles.Kontragent)]
         [Produces("application/json")]
-        public async Task<IActionResult> Post([FromBody]Vacancy item)
+        public async Task<IActionResult> Post([FromBody]Resume item)
         {
             var user = await userManager.GetUserAsync(User);
 
-            await userDbContext.Vacancies.AddAsync(item);
+            await userDbContext.Resumes.AddAsync(item);
 
+            item.CreatorId = user.Id;
+            
             await userDbContext.SaveChangesAsync();
 
-            await userManager.AddToRoleAsync(user, IdentityServer.Extensions.Constants.UserRoles.Kontragent);
+           // await userManager.AddToRoleAsync(user, IdentityServer.Extensions.Constants.UserRoles.Kontragent);
             
             return Ok(item);
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using CRM.DAL.Models.DatabaseModels.Resume;
 using CRM.DAL.Models.DatabaseModels.Tags;
-using CRM.DAL.Models.DatabaseModels.VacancyUsers;
+using CRM.DAL.Models.DatabaseModels.VacancyResumes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -44,7 +44,7 @@ namespace CRM.DAL.Models.DatabaseModels.Vacancies
         
         public ICollection<VacancySkills.VacancySkill> VacancySkills { get; set; }
 
-        public ICollection<VacancyUser> VacancyUsers { get; set; }
+        public ICollection<VacancyResume> VacancyUsers { get; set; }
         
         public Kontragents.Kontragent Kontragent { get; set; }
         
