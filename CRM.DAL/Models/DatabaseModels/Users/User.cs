@@ -23,7 +23,7 @@ namespace CRM.DAL.Models.DatabaseModels.Users
         
         public File Avatar { get; set; }
         
-        public Guid AvatarId { get; set; }
+        public Guid? AvatarId { get; set; }
         
         public ICollection<UserRole> UserRoles { get; set; }
         
