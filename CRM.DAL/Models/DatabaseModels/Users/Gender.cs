@@ -1,6 +1,6 @@
 namespace CRM.DAL.Models.DatabaseModels.Users
 {
-    public enum Sex
+    public enum Gender
     {
         Base,
         Male,

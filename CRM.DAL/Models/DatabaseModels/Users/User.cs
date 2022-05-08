@@ -19,7 +19,7 @@ namespace CRM.DAL.Models.DatabaseModels.Users
         
         public DateTime DateOfBirth { get; set; }
         
-        public Sex Sex { get; set; }
+        public Gender Gender { get; set; }
         
         public File Avatar { get; set; }
         

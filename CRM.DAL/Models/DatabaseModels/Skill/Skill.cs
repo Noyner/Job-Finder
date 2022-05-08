@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CRM.DAL.Models.DatabaseModels.Tags
+namespace CRM.DAL.Models.DatabaseModels.Skill
 {
     public class Skill
     {
@@ -11,7 +11,7 @@ namespace CRM.DAL.Models.DatabaseModels.Tags
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         
-        public string TagText { get; set; }
+        public string Title { get; set; }
 
     }
     

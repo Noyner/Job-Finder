@@ -7,6 +7,7 @@ using CRM.DAL.Models.DatabaseModels.KontragentUsers;
 using CRM.DAL.Models.DatabaseModels.Language;
 using CRM.DAL.Models.DatabaseModels.Resume;
 using CRM.DAL.Models.DatabaseModels.ResumeSkill;
+using CRM.DAL.Models.DatabaseModels.Skill;
 using CRM.DAL.Models.DatabaseModels.Tags;
 using CRM.DAL.Models.DatabaseModels.Users;
 using CRM.DAL.Models.DatabaseModels.Vacancies;

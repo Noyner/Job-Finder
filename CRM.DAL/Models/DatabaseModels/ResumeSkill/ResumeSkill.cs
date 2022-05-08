@@ -15,7 +15,7 @@ namespace CRM.DAL.Models.DatabaseModels.ResumeSkill
         
         public Guid SkillId { get; set; }
         
-        public Skill Skill { get; set; }
+        public Skill.Skill Skill { get; set; }
         
         public SkillType Type { get; set; }
     }
