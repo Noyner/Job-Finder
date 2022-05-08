@@ -49,9 +49,8 @@ namespace CRM.User.WebApp.Models.Basic
         public DbSet<DAL.Models.DatabaseModels.City.City> Cities { get; set; }
         public DbSet<DAL.Models.DatabaseModels.Language.Language> Languages { get; set; }
         public DbSet<DAL.Models.DatabaseModels.Vacancies.Vacancy> Vacancies { get; set; }
-        public DbSet<VacancyApplication> VacancyApplications { get; set; }
-        public DbSet<VacancyApplication> VacancyUsers { get; set; }
-        
+        public DbSet<DAL.Models.DatabaseModels.VacancyResumes.VacancyApplication> VacancyApplications { get; set; }
+
         public DbSet<Skill> Tags { get; set; }
         
 
