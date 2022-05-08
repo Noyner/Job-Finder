@@ -116,6 +116,11 @@ namespace CRM.IdentityServer.Controllers.Api
                 Email = model.Email,
                 EmailConfirmed = false,
                 IsActive = false,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                FathersName = model.FathersName,
+                DateOfBirth = model.DateOfBirth,
+                RegistrationDate = DateTime.Now
             };
             var passwordValidator = new PasswordValidator<User>();
             var isPasswordValid = await passwordValidator.ValidateAsync(userManager, user, model.Password);

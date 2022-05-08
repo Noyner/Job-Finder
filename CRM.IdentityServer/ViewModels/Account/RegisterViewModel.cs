@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CRM.IdentityServer.ViewModels.Account
 {
@@ -33,5 +34,10 @@ namespace CRM.IdentityServer.ViewModels.Account
         [Display(Name = "Фамилия")] 
         public string LastName { get; set; }
         
+        [Display(Name = "Отчество")] 
+        public string FathersName { get; set; }
+        
+        [Display(Name = "Дата рождения")] 
+        public DateTime DateOfBirth { get; set; }
     }
 }
