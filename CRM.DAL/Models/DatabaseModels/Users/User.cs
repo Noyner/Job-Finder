@@ -27,9 +27,9 @@ namespace CRM.DAL.Models.DatabaseModels.Users
         
         public string Description { get; set; }
         
-        public City.City City { get; set; }
+        public City.City? City { get; set; }
         
-        public Guid CityId { get; set; }
+        public Guid? CityId { get; set; }
         
         public ICollection<UserRole> UserRoles { get; set; }
         
