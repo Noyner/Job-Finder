@@ -25,6 +25,12 @@ namespace CRM.DAL.Models.DatabaseModels.Users
         
         public Guid? AvatarId { get; set; }
         
+        public string Description { get; set; }
+        
+        public City.City City { get; set; }
+        
+        public Guid CityId { get; set; }
+        
         public ICollection<UserRole> UserRoles { get; set; }
         
         public ICollection<UserClaim> UserClaims { get; set; }
@@ -53,7 +59,8 @@ namespace CRM.DAL.Models.DatabaseModels.Users
             item.HasMany(i => i.UserClaims)
                 .WithOne(i => i.User)
                 .HasForeignKey(i=>i.UserId);
-            
+
+            item.HasOne<City.City>(r => r.City);
 
             item.Property(i => i.RegistrationDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP");
