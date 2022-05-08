@@ -1,13 +1,17 @@
-﻿using CRM.DAL.Models.DatabaseModels.Configs;
+﻿using CRM.DAL.Models.DatabaseModels.City;
+using CRM.DAL.Models.DatabaseModels.Configs;
 using CRM.DAL.Models.DatabaseModels.Files;
 using CRM.DAL.Models.DatabaseModels.KontragentInfo;
 using CRM.DAL.Models.DatabaseModels.Kontragents;
 using CRM.DAL.Models.DatabaseModels.KontragentUsers;
-using CRM.DAL.Models.DatabaseModels.ProductsKontragents;
+using CRM.DAL.Models.DatabaseModels.Language;
+using CRM.DAL.Models.DatabaseModels.Resume;
+using CRM.DAL.Models.DatabaseModels.ResumeSkill;
 using CRM.DAL.Models.DatabaseModels.Tags;
 using CRM.DAL.Models.DatabaseModels.Users;
-using CRM.DAL.Models.DatabaseModels.Vacancys;
-using CRM.DAL.Models.DatabaseModels.VacancysUsers;
+using CRM.DAL.Models.DatabaseModels.Vacancies;
+using CRM.DAL.Models.DatabaseModels.VacancySkills;
+using CRM.DAL.Models.DatabaseModels.VacancyUsers;
 using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -28,13 +32,14 @@ namespace CRM.DAL
         public DbSet<KontragentInfo> KontragentInfos { get; set; }
         public DbSet<Kontragent> Kontragents { get; set; }
         public DbSet<KontragentUser> KontragentUsers { get; set; }
-        public DbSet<Vacancy> Vacancys { get; set; }
-        public DbSet<VacancyKontragent> VacancyKontragents { get; set; }
+        public DbSet<Vacancy> Vacancies { get; set; }
         public DbSet<VacancyUser> VacancyUsers { get; set; }
-        public DbSet<Tag> Tags { get; set; }
-
-
-
+        public DbSet<Skill> Skills { get; set; }
+        public DbSet<Resume> Resumes { get; set; }
+        public DbSet<ResumeSkill> ResumeSkills { get; set; }
+        public DbSet<VacancySkill> VacancySkills { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Language> Languages { get; set; }
         // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         // {
         //     base.OnConfiguring(optionsBuilder);
@@ -61,10 +66,9 @@ namespace CRM.DAL
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new UserClaimConfiguration());
             modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
-            
+            modelBuilder.ApplyConfiguration(new ResumeConfiguration());
             modelBuilder.ApplyConfiguration(new TagConfiguration());
             modelBuilder.ApplyConfiguration(new VacancyUserConfiguration());
-            modelBuilder.ApplyConfiguration(new VacancyKontragentConfiguration());
             modelBuilder.ApplyConfiguration(new VacancyConfiguration());
             modelBuilder.ApplyConfiguration(new KontragentUserConfiguration());
             modelBuilder.ApplyConfiguration(new KontragentConfiguration());

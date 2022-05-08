@@ -1,9 +1,9 @@
 namespace CRM.DAL.Models.DatabaseModels.Tags
 {
-    public enum TagType
+    public enum SkillType
     {
         Base,
-        GameFeature,
-        GameGenre
+        Primary,
+        Secondary
     }
 }

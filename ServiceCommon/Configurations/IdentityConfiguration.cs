@@ -1,6 +1,5 @@
 using System;
 using CRM.IdentityServer.Extensions.Constants;
-using CRM.ServiceCommon.Helpers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -47,9 +46,8 @@ namespace CRM.ServiceCommon.Configurations
             {
                 options.ValidationInterval = TimeSpan.FromSeconds(30);
             });
-            
-            return new IdentityBuilder(typeof(TUser), typeof(TRole), services)
-                .AddErrorDescriber<RussianLanguageIdentityErrorDescriber>();
+
+            return new IdentityBuilder(typeof(TUser), typeof(TRole), services);
         }
     }
 }

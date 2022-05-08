@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using CRM.DAL.Models.DatabaseModels.Files;
 using CRM.DAL.Models.DatabaseModels.KontragentUsers;
-using CRM.DAL.Models.DatabaseModels.ProductsKontragents;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -11,7 +10,6 @@ namespace CRM.DAL.Models.DatabaseModels.Kontragents
 {
     public class Kontragent
     {
-        //Developer/Publisher
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
       
@@ -25,7 +23,7 @@ namespace CRM.DAL.Models.DatabaseModels.Kontragents
         
         public ICollection<KontragentUser> KontragentUsers { get; set; }
         
-        public ICollection<VacancyKontragent> VacancyKontragents { get; set; }
+        public ICollection<Vacancies.Vacancy> Vacancies { get; set; }
     }
     
     public class KontragentConfiguration : IEntityTypeConfiguration<Kontragent>
@@ -36,13 +34,15 @@ namespace CRM.DAL.Models.DatabaseModels.Kontragents
                 .WithOne(r => r.Kontragent)
                 .HasForeignKey(r => r.KontragentId);
             
-            item.HasMany(i => i.VacancyKontragents)
+            item.HasMany(i => i.Vacancies)
                 .WithOne(r => r.Kontragent)
                 .HasForeignKey(r => r.KontragentId);
             
             item.HasMany(i => i.KontragentInfo)
                 .WithOne(r => r.Kontragent)
                 .HasForeignKey(r => r.KontragentId);
+
+            item.HasOne<File>(i => i.Icon);
 
         }
     }

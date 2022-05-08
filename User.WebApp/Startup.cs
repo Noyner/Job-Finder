@@ -128,15 +128,13 @@ namespace CRM.User.WebApp
             services.AddHttpContextAccessor();
 
             services.ConfigureDatabase(Configuration);
-
-            services.ConfigureSqlKata(Configuration);
+            
 
             services.AddDataProtection(options =>
                     options.ApplicationDiscriminator = "User Web App"
                 )
                 .PersistKeysToDbContext<UserDbContext>();
-
-            services.ConfigureRazorTemplateEngine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            
 
             services.AddHangfire(config =>
             {
@@ -166,8 +164,6 @@ namespace CRM.User.WebApp
                     options.PayloadSerializerSettings.Converters.Add(new StringEnumConverter());
                 }
             );
-            
-            services.ConfigureDbEventHostedService(Configuration);
 
             services.ConfigureAutoMapper();
 

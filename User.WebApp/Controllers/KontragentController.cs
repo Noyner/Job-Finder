@@ -44,7 +44,7 @@ namespace CRM.User.WebApp.Controllers
            var items= userDbContext.Kontragents
                 .IncludeOptimized(r => r.Icon)
                 .IncludeOptimized(r => r.KontragentInfo)
-                .IncludeOptimized(r => r.VacancyKontragents);
+                .IncludeOptimized(r => r.Vacancies);
            
            return StatusCode(StatusCodes.Status200OK, items);
         }
@@ -55,7 +55,7 @@ namespace CRM.User.WebApp.Controllers
                 .IncludeOptimized(r => r.Icon)
                 .IncludeOptimized(r => r.KontragentInfo)
                 .IncludeOptimized(r => r.KontragentUsers)
-                .IncludeOptimized(r => r.VacancyKontragents)
+                .IncludeOptimized(r => r.Vacancies)
                 .FirstOrDefaultAsync(r=>r.Id==key);
 
             if (item == null)
@@ -76,7 +76,7 @@ namespace CRM.User.WebApp.Controllers
             item.KontragentUsers.Add(new KontragentUser()
             {
                 UserId = user.Id,
-                RelationType = KontragentUserRelationType.Self
+                RelationType = KontragentUserRelationType.Owner
             });
 
             await userDbContext.SaveChangesAsync();

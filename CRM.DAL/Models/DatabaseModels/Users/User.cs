@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using CRM.DAL.Models.DatabaseModels.Files;
 using CRM.DAL.Models.DatabaseModels.KontragentUsers;
-using CRM.DAL.Models.DatabaseModels.VacancysUsers;
+using CRM.DAL.Models.DatabaseModels.VacancyUsers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -13,6 +14,16 @@ namespace CRM.DAL.Models.DatabaseModels.Users
         public string FirstName { get; set; }
         
         public string LastName { get; set; }
+        
+        public string? FathersName { get; set; }
+        
+        public DateTime DateOfBirth { get; set; }
+        
+        public Sex Sex { get; set; }
+        
+        public File Avatar { get; set; }
+        
+        public Guid AvatarId { get; set; }
         
         public ICollection<UserRole> UserRoles { get; set; }
         
@@ -26,6 +37,7 @@ namespace CRM.DAL.Models.DatabaseModels.Users
 
 
         public DateTime RegistrationDate { get; set; }
+        
     }
 
     public class UserConfiguration : IEntityTypeConfiguration<User>
@@ -48,6 +60,8 @@ namespace CRM.DAL.Models.DatabaseModels.Users
 
             item.Property(i => i.RegistrationDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+            item.HasOne<File>(r => r.Avatar);
         }
     }
 }

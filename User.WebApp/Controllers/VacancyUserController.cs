@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using CRM.DAL.Models.DatabaseModels.VacancysUsers;
+using CRM.DAL.Models.DatabaseModels.VacancyUsers;
 using CRM.User.WebApp.Models.Basic;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Query;
@@ -47,9 +47,9 @@ namespace CRM.User.WebApp.Controllers
             var user = await userManager.GetUserAsync(User);
             
             return userDbContext.VacancyUsers
-                .IncludeOptimized(r => r.Vacancy.Requirements)
-                .IncludeOptimized(r => r.Vacancy.Tags)
-                .IncludeOptimized(r => r.Vacancy.VacancyKontragents.Select(r => r.Kontragent))
+                .IncludeOptimized(r => r.Vacancy.VacancySkills)
+                .IncludeOptimized(r => r.Vacancy.VacancySkills.Select(r=>r.Skill))
+                .IncludeOptimized(r => r.Vacancy.Kontragent)
                 .Where(r=>r.UserId==user.Id);
         }
         

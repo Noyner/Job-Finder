@@ -4,7 +4,6 @@ using CRM.DAL.Models.DatabaseModels.Users;
 using CRM.IdentityServer.Extensions.Constants;
 using CRM.IdentityServer.Models;
 using CRM.IdentityServer.Services;
-using CRM.ServiceCommon.Helpers;
 using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
@@ -33,7 +32,6 @@ namespace CRM.IdentityServer.Configuration
                 })
                 .AddEntityFrameworkStores<IdentityServerDbContext>()
                 .AddRoles<Role>()
-                .AddErrorDescriber<RussianLanguageIdentityErrorDescriber>()
                 .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options =>

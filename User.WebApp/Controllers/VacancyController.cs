@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using CRM.DAL.Models.DatabaseModels.Vacancys;
-using CRM.DAL.Models.DatabaseModels.VacancysUsers;
+using CRM.DAL.Models.DatabaseModels.Vacancies;
+using CRM.DAL.Models.DatabaseModels.VacancyUsers;
 using CRM.DAL.Models.DatabaseModels.VacansysUsers;
 using CRM.User.WebApp.Models.Basic;
 using Microsoft.AspNet.OData;
@@ -33,10 +33,10 @@ namespace CRM.User.WebApp.Controllers
         }
         
         /// <summary>
-        ///     Get Vacancys.
+        ///     Get Vacancies.
         /// </summary>
-        /// <returns>The requested Vacancys.</returns>
-        /// <response code="200">The Vacancys was successfully retrieved.</response>
+        /// <returns>The requested Vacancies.</returns>
+        /// <response code="200">The Vacancies was successfully retrieved.</response>
         [Produces("application/json")]
         [ProducesResponseType(typeof(IEnumerable<Vacancy>), StatusCodes.Status200OK)]
         [EnableQuery(HandleNullPropagation = HandleNullPropagationOption.False)]
@@ -44,10 +44,11 @@ namespace CRM.User.WebApp.Controllers
         {
             QueryIncludeOptimizedManager.AllowIncludeSubPath = true;
 
-            return userDbContext.Vacancys
-                .IncludeOptimized(p => p.Requirements)
-                .IncludeOptimized(p => p.Tags)
-                .IncludeOptimized(p => p.VacancyKontragents);
+            return userDbContext.Vacancies
+                .IncludeOptimized(p => p.VacancySkills)
+                .IncludeOptimized(r=>r.Language)
+                .IncludeOptimized(r=>r.City)
+                .IncludeOptimized(p => p.Kontragent);
         }
 
         [Produces("application/json")]
@@ -55,7 +56,7 @@ namespace CRM.User.WebApp.Controllers
         {
             var user = await userManager.GetUserAsync(User);
 
-            await userDbContext.Vacancys.AddAsync(item);
+            await userDbContext.Vacancies.AddAsync(item);
 
             item.VacancyUsers = new List<VacancyUser>();
             item.VacancyUsers.Add(new VacancyUser()

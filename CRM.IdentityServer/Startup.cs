@@ -79,7 +79,7 @@ namespace CRM.IdentityServer
                     options.SubstituteApiVersionInUrl = true;
                 });
             
-            services.ConfigureRazorTemplateEngine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            
 
             if (!Env.IsDevelopment())
             {
