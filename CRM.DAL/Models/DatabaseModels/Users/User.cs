@@ -37,7 +37,7 @@ namespace CRM.DAL.Models.DatabaseModels.Users
 
         public bool IsActive { get; set; }
         
-        public ICollection<VacancyResume> VacancyUsers { get; set; }
+        public ICollection<VacancyApplication> VacancyUsers { get; set; }
         
         public ICollection<KontragentUser> KontragentUsers { get; set; }
 

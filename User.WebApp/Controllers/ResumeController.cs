@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using CRM.DAL.Models.DatabaseModels.Resume;
@@ -10,6 +12,7 @@ using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Z.EntityFramework.Plus;
 
@@ -49,6 +52,41 @@ namespace CRM.User.WebApp.Controllers
                 .IncludeOptimized(r=>r.City)
                 .IncludeOptimized(p => p.Creator);
         }
+        
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(DAL.Models.DatabaseModels.Users.User), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Patch(Guid key, Delta<DAL.Models.DatabaseModels.Resume.Resume> delta,
+            CancellationToken cancellationToken)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var item = await UserDbContext.Resumes
+                .IncludeOptimized(i => i.ResumeSkills)
+                .FirstOrDefaultAsync(i => i.Id == key, cancellationToken);
+
+            if (item == null)
+            {
+                return NotFound($"Не удалось найти vacancy с идентификатором {key}");
+            }
+
+            if (delta.GetChangedPropertyNames()
+                .Any(a => a == nameof(item.Id) || a == nameof(item.CreatorId)))
+            {
+                return BadRequest("Запрет на редактирование свойства");
+            }
+
+            delta.Patch(item);
+
+            await UserDbContext.SaveChangesAsync(cancellationToken);
+
+            return Updated(item);
+        }
 
         [Produces("application/json")]
         public async Task<IActionResult> Post([FromBody]Resume item)
@@ -65,6 +103,7 @@ namespace CRM.User.WebApp.Controllers
             
             return Ok(item);
         }
+        
         
     }
 }

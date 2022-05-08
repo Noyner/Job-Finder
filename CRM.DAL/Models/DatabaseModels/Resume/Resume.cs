@@ -33,7 +33,7 @@ namespace CRM.DAL.Models.DatabaseModels.Resume
         
         public ICollection<ResumeSkill.ResumeSkill> ResumeSkills { get; set; }
         
-        public ICollection<VacancyResume> VacancyResumes { get; set; }
+        public ICollection<VacancyApplication> VacancyApplications { get; set; }
 
         public Guid? CityId { get; set; }
 

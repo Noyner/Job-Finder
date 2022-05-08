@@ -34,8 +34,9 @@ namespace CRM.DAL
         public DbSet<Kontragent> Kontragents { get; set; }
         public DbSet<KontragentUser> KontragentUsers { get; set; }
         public DbSet<Vacancy> Vacancies { get; set; }
-        public DbSet<VacancyResume> VacancyUsers { get; set; }
+        public DbSet<VacancyApplication> VacancyUsers { get; set; }
         public DbSet<Skill> Skills { get; set; }
+        public DbSet<VacancyApplication> VacancyApplications { get; set; }
         public DbSet<Resume> Resumes { get; set; }
         public DbSet<ResumeSkill> ResumeSkills { get; set; }
         public DbSet<VacancySkill> VacancySkills { get; set; }

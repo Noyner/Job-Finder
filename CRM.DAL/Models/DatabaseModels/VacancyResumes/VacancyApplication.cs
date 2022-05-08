@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CRM.DAL.Models.DatabaseModels.VacancyResumes
 {
-    public class VacancyResume
+    public class VacancyApplication
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
@@ -20,16 +20,16 @@ namespace CRM.DAL.Models.DatabaseModels.VacancyResumes
         public Vacancy Vacancy { get; set; }
         
     }
-    public class VacancyUserConfiguration : IEntityTypeConfiguration<VacancyResume>
+    public class VacancyUserConfiguration : IEntityTypeConfiguration<VacancyApplication>
     {
-        public void Configure(EntityTypeBuilder<VacancyResume> item)
+        public void Configure(EntityTypeBuilder<VacancyApplication> item)
         {
             item.HasOne(i => i.Vacancy)
-                .WithMany(r => r.VacancyUsers)
+                .WithMany(r => r.VacancyApplications)
                 .HasForeignKey(i => i.VacancyId);
             
             item.HasOne(i => i.Resume)
-                .WithMany(r => r.VacancyResumes)
+                .WithMany(r => r.VacancyApplications)
                 .HasForeignKey(i => i.ResumeId);
         }
     }

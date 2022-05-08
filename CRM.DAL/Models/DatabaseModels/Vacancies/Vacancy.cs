@@ -43,8 +43,10 @@ namespace CRM.DAL.Models.DatabaseModels.Vacancies
         public Guid LanguageId { get; set; }
         
         public ICollection<VacancySkills.VacancySkill> VacancySkills { get; set; }
+        
+        public ICollection<VacancyApplication> VacancyApplications { get; set; }
 
-        public ICollection<VacancyResume> VacancyUsers { get; set; }
+        public ICollection<VacancyApplication> VacancyUsers { get; set; }
         
         public Kontragents.Kontragent Kontragent { get; set; }
         
