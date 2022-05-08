@@ -38,8 +38,8 @@ namespace JobSearch.Views
         {
             object data = new
             {
-                registerViewModel.,
-                registerViewModel.,
+                registerViewModel.FirstName,
+                registerViewModel.LastName,
                 registerViewModel.Email,
                 registerViewModel.Username,
                 registerViewModel.Password,
@@ -58,6 +58,7 @@ namespace JobSearch.Views
         private async void RegisterButton_OnClick(object sender, RoutedEventArgs e)
         {
             await PostData();
+            this.Close();
         }
 
         private void LoginButton_OnClick(object sender, RoutedEventArgs e)

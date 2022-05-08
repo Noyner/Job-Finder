@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CRM.DAL.Models.DatabaseModels.Users;
 using CRM.DAL.Models.RequestModels.Auth;
 using CRM.DAL.Models.ResponseModels.Auth;
 using CRM.IdentityServer.ViewModels.Account;
@@ -51,6 +52,8 @@ namespace JobSearch.Views
             { 
                 var tr = JsonConvert.DeserializeObject<TokenResponse>( await result.Content.ReadAsStringAsync());
                 Storage.Set(tr.Token);
+                UserProfileView user = new UserProfileView();
+                user.Show();
             }
             else
             {
@@ -63,13 +66,13 @@ namespace JobSearch.Views
         private async void LoginButton_OnClick(object sender, RoutedEventArgs e)
         {
             await PostData();
+            this.Close();
         }
 
         private void RegisterButton_OnClick(object sender, RoutedEventArgs e)
         {
             RegistrationView regView = new RegistrationView();
             regView.Show();
-            //this.Close();
         }
     }
 }

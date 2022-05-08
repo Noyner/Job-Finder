@@ -11,7 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Desktop\CRM-Job-Finder-master\CRM.IdentityServer\CRM.IdentityServer.csproj" />
+	  <ProjectReference Include="..\CRM.DAL\CRM.DAL.csproj" />
+	  <ProjectReference Include="..\CRM.IdentityServer\CRM.IdentityServer.csproj" />
   </ItemGroup>
 
 </Project>
