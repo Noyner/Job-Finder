@@ -45,8 +45,7 @@ namespace CRM.DAL.Models.DatabaseModels.Vacancies
         public ICollection<VacancySkills.VacancySkill> VacancySkills { get; set; }
         
         public ICollection<VacancyApplication> VacancyApplications { get; set; }
-
-        public ICollection<VacancyApplication> VacancyUsers { get; set; }
+        
         
         public Kontragents.Kontragent Kontragent { get; set; }
         
@@ -58,10 +57,6 @@ namespace CRM.DAL.Models.DatabaseModels.Vacancies
     {
         public void Configure(EntityTypeBuilder<Vacancy> item)
         {
-
-            item.HasMany(i => i.VacancyUsers)
-                .WithOne(i => i.Vacancy)
-                .HasForeignKey(i => i.VacancyId);
 
             item.HasMany(i => i.VacancySkills)
                 .WithOne(i => i.Vacancy)

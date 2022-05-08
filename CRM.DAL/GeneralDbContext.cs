@@ -34,7 +34,6 @@ namespace CRM.DAL
         public DbSet<Kontragent> Kontragents { get; set; }
         public DbSet<KontragentUser> KontragentUsers { get; set; }
         public DbSet<Vacancy> Vacancies { get; set; }
-        public DbSet<VacancyApplication> VacancyUsers { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<VacancyApplication> VacancyApplications { get; set; }
         public DbSet<Resume> Resumes { get; set; }
@@ -70,7 +69,7 @@ namespace CRM.DAL
             modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
             modelBuilder.ApplyConfiguration(new ResumeConfiguration());
             modelBuilder.ApplyConfiguration(new TagConfiguration());
-            modelBuilder.ApplyConfiguration(new VacancyUserConfiguration());
+            modelBuilder.ApplyConfiguration(new VacancyApplicationConfiguration());
             modelBuilder.ApplyConfiguration(new VacancyConfiguration());
             modelBuilder.ApplyConfiguration(new KontragentUserConfiguration());
             modelBuilder.ApplyConfiguration(new KontragentConfiguration());

@@ -20,7 +20,7 @@ namespace CRM.DAL.Models.DatabaseModels.VacancyResumes
         public Vacancy Vacancy { get; set; }
         
     }
-    public class VacancyUserConfiguration : IEntityTypeConfiguration<VacancyApplication>
+    public class VacancyApplicationConfiguration : IEntityTypeConfiguration<VacancyApplication>
     {
         public void Configure(EntityTypeBuilder<VacancyApplication> item)
         {
