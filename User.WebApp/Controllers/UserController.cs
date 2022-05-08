@@ -75,6 +75,14 @@ namespace CRM.User.WebApp.Controllers
         public async Task<IActionResult> Patch(string key, Delta<DAL.Models.DatabaseModels.Users.User> delta,
             CancellationToken cancellationToken)
         {
+
+            var userId = userManager.GetUserId(User);
+
+            if (userId != key)
+            {
+                return Forbid("Not own user");
+            }
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
