@@ -52,8 +52,6 @@ namespace JobSearch.Views
             { 
                 var tr = JsonConvert.DeserializeObject<TokenResponse>( await result.Content.ReadAsStringAsync());
                 Storage.Set(tr.Token);
-                UserProfileView user = new UserProfileView();
-                user.Show();
             }
             else
             {
@@ -66,6 +64,8 @@ namespace JobSearch.Views
         private async void LoginButton_OnClick(object sender, RoutedEventArgs e)
         {
             await PostData();
+            MainWindow mainWindow = new MainWindow();
+            //mainWindow.Show();
             this.Close();
         }
 

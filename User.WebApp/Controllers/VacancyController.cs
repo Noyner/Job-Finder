@@ -57,7 +57,7 @@ namespace CRM.User.WebApp.Controllers
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-            Roles = UserRoles.Kontragent)]
+            Roles = UserRoles.User)]
         [Produces("application/json")]
         public async Task<IActionResult> Post([FromBody]Vacancy item)
         {

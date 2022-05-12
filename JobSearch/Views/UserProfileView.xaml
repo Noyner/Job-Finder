@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JobSearch.Views"
         mc:Ignorable="d"
-        Title="UserProfileView" Height="450" Width="800"
+        Title="UserProfileView" Height="600" Width="850"
         Loaded="UserProfileView_OnLoaded">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
-                <RowDefinition Height="410"/>
+                <RowDefinition Height="560"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="400"/>
+                <ColumnDefinition Width="450"/>
                 <ColumnDefinition Width="400"/>
             </Grid.ColumnDefinitions>
 
@@ -36,8 +36,8 @@
                            Foreground="Black"
                            HorizontalAlignment="Center"/>
             </StackPanel>
-            <Border Grid.Row="1" Grid.Column="0" Width="400" Height="300" BorderThickness="1" CornerRadius="15" BorderBrush="CornflowerBlue" Background="CornflowerBlue">
-                <StackPanel Height="200" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,10,0,0">
+            <Border Grid.Row="1" Grid.Column="0" Width="450" Height="500" BorderThickness="1" CornerRadius="15" BorderBrush="CornflowerBlue" Background="CornflowerBlue">
+                <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,54,0,44">
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <Label FontFamily="Helvetica"
                            FontWeight="Light"
@@ -79,7 +79,7 @@
                              Opacity="0.8"
                              Height="35"
                              Margin="63,5,0,5"/>
-                        <TextBox Text="{Binding Path=LastName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}"
+                        <TextBlock Text="{Binding Path=DateOfBirth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                  Name="LastNameField" 
                                  FontFamily="Helvetica"
                            FontWeight="DemiBold"
@@ -87,39 +87,10 @@
                            HorizontalAlignment="Left"
                            Foreground="Black"
                            Background="Transparent"
-                           BorderThickness="0"
-                           Width="235"
+                                 Width="235"
                            Visibility="Visible"
-                           HorizontalContentAlignment="Left"
                                  Margin="0,5,0,5"
                                  Height="35"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label FontFamily="Helvetica"
-                               FontWeight="Light"
-                               Content="Fathers name: "
-                               FontSize="20"
-                               HorizontalAlignment="Center"
-                               Foreground="Black"
-                               Background="Transparent"
-                               BorderThickness="0"
-                               Width="150"
-                               HorizontalContentAlignment="Left"
-                               Opacity="0.8"
-                               Height="35"
-                               Margin="63,5,0,5"/>
-                        <TextBlock Name="FirstNameField"
-                            Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
-                                 FontFamily="Helvetica"
-                                 FontWeight="DemiBold"
-                                 FontSize="20"
-                                 HorizontalAlignment="Left"
-                                 Foreground="Black"
-                                 Background="Transparent"
-                                 Visibility="Visible"
-                                 Width="235"
-                                 Height="35"
-                            Margin="0,5,0,5"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <Label FontFamily="Helvetica"
@@ -135,22 +106,95 @@
                              Opacity="0.8"
                              Height="35"
                              Margin="63,5,0,5"/>
-                        <Label Content="{Binding FirstName}"
+                        <TextBlock Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                            FontFamily="Helvetica"
+                           Name="EmailField"
                            FontWeight="DemiBold"
                            FontSize="20"
-                           HorizontalAlignment="Left"
                            Foreground="Black"
                            Background="Transparent"
-                           BorderThickness="0"
                            Width="235"
-                           HorizontalContentAlignment="Left"
-                           Height="35"
-                           Margin="0,5,0,5"
-                    />
+                           Height="34"
+                           RenderTransformOrigin="0.828,2.238"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <Label FontFamily="Helvetica"
+                               FontWeight="Light"
+                               Content="City: "
+                               FontSize="20"
+                               HorizontalAlignment="Center"
+                               Foreground="Black"
+                               Background="Transparent"
+                               BorderThickness="0"
+                               Width="150"
+                               HorizontalContentAlignment="Left"
+                               Opacity="0.8"
+                               Height="35"
+                               Margin="63,5,0,5"/>
+                        <TextBlock Text="{Binding Path=City.Title, UpdateSourceTrigger=PropertyChanged}"
+                               FontFamily="Helvetica"
+                               Name="CityField"
+                               FontWeight="DemiBold"
+                               FontSize="20"
+                               Foreground="Black"
+                               Background="Transparent"
+                               Width="235"
+                               Height="34"
+                               RenderTransformOrigin="0.828,2.238"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <Label FontFamily="Helvetica"
+                               FontWeight="Light"
+                               Content="Phone: "
+                               FontSize="20"
+                               HorizontalAlignment="Center"
+                               Foreground="Black"
+                               Background="Transparent"
+                               BorderThickness="0"
+                               Width="150"
+                               HorizontalContentAlignment="Left"
+                               Opacity="0.8"
+                               Height="35"
+                               Margin="63,5,0,5"/>
+                        <TextBlock Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                               FontFamily="Helvetica"
+                               Name="PhoneField"
+                               FontWeight="DemiBold"
+                               FontSize="20"
+                               Foreground="Black"
+                               Background="Transparent"
+                               Width="235"
+                               Height="34"
+                               RenderTransformOrigin="0.828,2.238"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <Label FontFamily="Helvetica"
+                               FontWeight="Light"
+                               Content="Gender: "
+                               FontSize="20"
+                               HorizontalAlignment="Center"
+                               Foreground="Black"
+                               Background="Transparent"
+                               BorderThickness="0"
+                               Width="150"
+                               HorizontalContentAlignment="Left"
+                               Opacity="0.8"
+                               Height="35"
+                               Margin="63,5,0,5"/>
+                        <TextBlock Text="{Binding Path=Gender, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                               FontFamily="Helvetica"
+                               Name="GenderField"
+                               FontWeight="DemiBold"
+                               FontSize="20"
+                               Foreground="Black"
+                               Background="Transparent"
+                               Width="235"
+                               Height="34"
+                               RenderTransformOrigin="0.828,2.238"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
+            <Button x:Name="FillInfoButton" Click="FillInfoButton_OnClick" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,50" Grid.Row="1" Grid.Column="0" Visibility="Visible" Height="20" Width="100" Background="Orange" Content="Fill infromation"/>
             <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Width="350" Height="400" BorderThickness="1" CornerRadius="15" BorderBrush="CornflowerBlue" Background="CornflowerBlue" >
             </Border>
         </Grid>

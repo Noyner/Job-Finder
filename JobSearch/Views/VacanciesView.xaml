@@ -1,0 +1,82 @@
+﻿<Window x:Class="JobSearch.Views.VacanciesView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JobSearch.Views"
+        mc:Ignorable="d"
+        Title="VacanciesView" Height="600" Width="600"
+        Loaded="VacanciesView_OnLoaded">
+    <Window.Resources>
+        <Style TargetType="TextBlock"  x:Key="TitleStyle" x:Name="TitleStyle">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Margin" Value="100,10,0,0"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Text" Value="Test1"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="DescriptionStyle" x:Name="DescriptionStyle">
+            <Setter Property="Foreground" Value="LightGray" />
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Margin" Value="100,0,0,0"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Text" Value="Test2"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="CityStyle" x:Name="CityStyle">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Margin" Value="100,8,0,0"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Text" Value="Test3"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="SkillsStyle" x:Name="SkillsStyle">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Margin" Value="30,8,0,0"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Text" Value="Test4"/>
+        </Style>
+        <Style TargetType="StackPanel" x:Key="VacancyStackPanel">
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush>
+                        <GradientStop Color="DarkSlateBlue" Offset="0.0"/>
+                        <GradientStop Color="RoyalBlue" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Margin" Value="0,0,0,3"/>
+        </Style>
+    </Window.Resources>
+    <StackPanel x:Name="VacanciesStackPanel">
+        <StackPanel.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="#7be9f6" Offset="0.0"/>
+                <GradientStop Color="#f083da" Offset="1"/>
+            </LinearGradientBrush>
+        </StackPanel.Background>
+        <StackPanel Style="{StaticResource VacancyStackPanel}">
+            <TextBlock Name="VacancyTitle" Style="{StaticResource TitleStyle}"/>
+            <TextBlock Name="VacancyDescription" Style="{StaticResource DescriptionStyle}"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Name="VacancyCity" Style="{StaticResource CityStyle}"/>
+                <TextBlock Name="VacancySkills" Style="{StaticResource SkillsStyle}"/>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Window>

@@ -54,11 +54,21 @@ namespace JobSearch.Views
         {
             await GetUserData();
             NameField.Text = $"{user.FirstName} {user.LastName}";
+            EmailField.Text = user.Email;
+            //CityField.Text = user.City.Title;
+            GenderField.Text = user.Gender.ToString();
+            PhoneField.Text = user.PhoneNumber;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
+        private void FillInfoButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            FillInfoView f = new FillInfoView();
+            f.Show();
+            this.Close();
+        }
     }
 }

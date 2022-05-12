@@ -5,8 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JobSearch"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="800">
     <Grid>
-        <Button Click="ButtonBase_OnClick" Content="НАЖМИ НА МЕНЯ"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="560"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition Width="400"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Border CornerRadius="10" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#7be9f6" Offset="0.0"/>
+                        <GradientStop Color="#f083da" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" Margin="0,10,0,0" >
+                <TextBlock Text="Job Finder"
+                           FontWeight="Light"
+                           FontFamily="helvetica"
+                           FontSize="30"
+                           Foreground="Black"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,20,50,0">
+                <Button Name="Login" Click="Login_OnClick" Height="20" Width="100" Content="Login" Margin="0,0,5,0" Background="Orange" Foreground="Black"/>
+                <Button Name="Registration" Click="Registration_OnClick" Height="20" Width="100" Content="Registration" Background="Orange" Foreground="Black"/>
+            </StackPanel>
+            <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Width="700" Height="500" BorderThickness="1" CornerRadius="15" BorderBrush="CornflowerBlue" Background="CornflowerBlue">
+                <StackPanel>
+                    <Button Name="Profile" Click="Profile_OnClick" Height="20" Width="100" Content="Profile" Margin="0,0,5,0" Background="Orange" Foreground="Black"/>
+                    <Button Name="Exit" Click="Exit_OnClick" Height="20" Width="100" Content="Exit" Margin="0,0,5,0" Background="Orange" Foreground="Black"/>
+                    <Button Name="FindVacancies" Click="FindVacancies_OnClick" Height="20" Width="100" Content="Find vacancies" Margin="0,0,5,0" Background="Orange" Foreground="Black"/>
+                    <Button Name="AddVacancy" Click="AddVacancy_OnClick" Height="20" Width="100" Content="Add vacancy" Margin="0,0,5,0" Background="Orange" Foreground="Black"/>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </Window>

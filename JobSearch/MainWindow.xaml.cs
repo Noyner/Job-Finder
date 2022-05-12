@@ -26,10 +26,40 @@ namespace JobSearch
             InitializeComponent();
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void Login_OnClick(object sender, RoutedEventArgs e)
+        {
+            LoginView view = new LoginView();
+            view.Show();
+        }
+
+        private void Registration_OnClick(object sender, RoutedEventArgs e)
         {
             RegistrationView view = new RegistrationView();
             view.Show();
+        }
+
+        private void Profile_OnClick(object sender, RoutedEventArgs e)
+        {
+            UserProfileView view = new UserProfileView();
+            view.Show();
+        }
+
+        private void Exit_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void FindVacancies_OnClick(object sender, RoutedEventArgs e)
+        {
+            VacanciesView view = new VacanciesView();
+            view.Show();
+        }
+
+        private void AddVacancy_OnClick(object sender, RoutedEventArgs e)
+        {
+            AddVacancyView view = new AddVacancyView();
+            view.Show();
+            this.Close();
         }
     }
 }
