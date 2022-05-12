@@ -63,6 +63,10 @@ namespace CRM.User.WebApp.Controllers
         {
             var user = await userManager.GetUserAsync(User);
 
+            //!! HARDCODE !!
+            item.KontragentId = userDbContext.KontragentUsers.First(r => r.UserId == user.Id).Id;
+            //!! HARDCODE !!
+            
             await userDbContext.Vacancies.AddAsync(item);
 
             await userDbContext.SaveChangesAsync();
