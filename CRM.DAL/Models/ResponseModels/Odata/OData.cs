@@ -8,7 +8,7 @@ namespace CRM.DAL.Models.ResponseModels.Odata
         public string Metadata { get; set; }
         
         [JsonProperty("@odata.count")]
-        public string Count { get; set; }
+        public int Count { get; set; }
         
         public T value { get; set; }
     }
