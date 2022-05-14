@@ -75,7 +75,7 @@
             <TextBlock Name="VacancyDescription" Style="{StaticResource DescriptionStyle}"/>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Name="VacancyCity" Style="{StaticResource CityStyle}"/>
-                <TextBlock Name="VacancySkills" Style="{StaticResource SkillsStyle}"/>
+                <TextBlock Name="RequiredSkills" Style="{StaticResource SkillsStyle}"/>
             </StackPanel>
         </StackPanel>
     </StackPanel>

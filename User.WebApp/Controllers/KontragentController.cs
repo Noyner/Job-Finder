@@ -43,7 +43,7 @@ namespace CRM.User.WebApp.Controllers
         {
            var items= userDbContext.Kontragents
                 .IncludeOptimized(r => r.Icon)
-                .IncludeOptimized(r => r.KontragentInfo)
+                .IncludeOptimized(r => r.Info)
                 .IncludeOptimized(r => r.Vacancies);
            
            return StatusCode(StatusCodes.Status200OK, items);
@@ -53,7 +53,7 @@ namespace CRM.User.WebApp.Controllers
         {
             var item = await userDbContext.Kontragents
                 .IncludeOptimized(r => r.Icon)
-                .IncludeOptimized(r => r.KontragentInfo)
+                .IncludeOptimized(r => r.Info)
                 .IncludeOptimized(r => r.KontragentUsers)
                 .IncludeOptimized(r => r.Vacancies)
                 .FirstOrDefaultAsync(r=>r.Id==key);
