@@ -1,7 +1,6 @@
 ﻿using CRM.DAL.Models.DatabaseModels.Configs;
 using CRM.DAL.Models.DatabaseModels.Files;
 using CRM.DAL.Models.DatabaseModels.Kontragents;
-using CRM.DAL.Models.DatabaseModels.KontragentUsers;
 using CRM.DAL.Models.DatabaseModels.Resume;
 using CRM.DAL.Models.DatabaseModels.Users;
 using CRM.DAL.Models.DatabaseModels.Vacancies;
@@ -24,7 +23,6 @@ namespace CRM.DAL
 
         public DbSet<File> Files { get; set; }
         public DbSet<Kontragent> Kontragents { get; set; }
-        public DbSet<KontragentUser> KontragentUsers { get; set; }
         public DbSet<Vacancy> Vacancies { get; set; }
         public DbSet<VacancyApplication> VacancyApplications { get; set; }
         public DbSet<Resume> Resumes { get; set; }
@@ -57,7 +55,6 @@ namespace CRM.DAL
             modelBuilder.ApplyConfiguration(new ResumeConfiguration());
             modelBuilder.ApplyConfiguration(new VacancyApplicationConfiguration());
             modelBuilder.ApplyConfiguration(new VacancyConfiguration());
-            modelBuilder.ApplyConfiguration(new KontragentUserConfiguration());
             modelBuilder.ApplyConfiguration(new KontragentConfiguration());
             modelBuilder.ApplyConfiguration(new FileConfiguration());
         }
