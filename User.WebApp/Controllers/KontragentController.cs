@@ -63,6 +63,7 @@ namespace CRM.User.WebApp.Controllers
             
             return StatusCode(StatusCodes.Status200OK, item);
         }
+        
 
         [Produces("application/json")]
         public async Task<IActionResult> Post([FromBody]Kontragent item)

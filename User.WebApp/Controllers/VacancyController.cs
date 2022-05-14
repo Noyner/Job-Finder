@@ -54,7 +54,7 @@ namespace CRM.User.WebApp.Controllers
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-            Roles = UserRoles.User)]
+            Roles = UserRoles.Kontragent)]
         [Produces("application/json")]
         public async Task<IActionResult> Post([FromBody]Vacancy item)
         {
@@ -71,8 +71,6 @@ namespace CRM.User.WebApp.Controllers
 
             await userDbContext.SaveChangesAsync();
 
-            await userManager.AddToRoleAsync(user, IdentityServer.Extensions.Constants.UserRoles.Kontragent);
-            
             return Ok(item);
         }
         
