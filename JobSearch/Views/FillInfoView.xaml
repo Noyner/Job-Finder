@@ -60,7 +60,7 @@
                     <TextBox FontFamily="Helvetica"
                              Name="CityBox"
                              FontWeight="Light"
-                             Text=""
+                             Text="{Binding Path=City, UpdateSourceTrigger=PropertyChanged}"
                              FontSize="20"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Center"

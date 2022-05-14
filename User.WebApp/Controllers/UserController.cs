@@ -50,7 +50,7 @@ namespace CRM.User.WebApp.Controllers
             var user = await UserDbContext.Users
                 .IncludeOptimized(i => i.UserRoles.Select(ur => ur.Role))
                 .IncludeOptimized(i=>i.KontragentUsers.Select(r=>r.Kontragent))
-                .IncludeOptimized(i=>i.VacancyUsers.Select(r=>r.Vacancy))
+                .IncludeOptimized(i=>i.VacancyApplications.Select(r=>r.Vacancy))
                 .IncludeOptimized(r=>r.UserClaims)
                 .FirstOrDefaultAsync(i => i.Id == userId);
             

@@ -131,7 +131,7 @@
                                Opacity="0.8"
                                Height="35"
                                Margin="63,5,0,5"/>
-                        <TextBlock Text="{Binding Path=City.Title, UpdateSourceTrigger=PropertyChanged}"
+                        <TextBlock Text="{Binding Path=City, UpdateSourceTrigger=PropertyChanged}"
                                FontFamily="Helvetica"
                                Name="CityField"
                                FontWeight="DemiBold"

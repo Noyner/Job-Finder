@@ -57,7 +57,8 @@ namespace JobSearch.Views
             {
                 dateOfBirth = DateOfBirthBox.SelectedDate.Value.ToString("yyyy-MM-ddTHH:mm:ss.fffffffK")+"+03:00",
                 gender = GenderBox.Text,
-                phoneNumber = PhoneBox.Text
+                phoneNumber = PhoneBox.Text,
+                city = CityBox.Text
             };
 
             var d = new Delta<User>(typeof(User));

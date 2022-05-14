@@ -13,7 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using CRM.DAL.Models.DatabaseModels.City;
+using CRM.DAL.Models.DatabaseModels;
 using CRM.DAL.Models.DatabaseModels.Kontragents;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -38,7 +38,7 @@ namespace JobSearch.Views
             object data = new
             {
                 title = kontragentViewModel.Title,
-                kontragentInfo = kontragentViewModel.KontragentInfo,
+                info = kontragentViewModel.Info
             };
 
             var serializerSettings = new JsonSerializerSettings();

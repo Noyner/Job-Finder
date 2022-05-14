@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using CRM.DAL.Models.DatabaseModels.ResumeSkill;
-using CRM.DAL.Models.DatabaseModels.Tags;
 using CRM.DAL.Models.DatabaseModels.Users;
 using CRM.DAL.Models.DatabaseModels.VacancyResumes;
 using Microsoft.EntityFrameworkCore;
@@ -25,17 +23,11 @@ namespace CRM.DAL.Models.DatabaseModels.Resume
         
         public EmploymentType EmploymentType { get; set; }
         
-        public Language.Language Language { get; set; }
+        public string City { get; set; }
         
-        public Guid LanguageId { get; set; }
-        
-        public City.City City { get; set; }
-        
-        public ICollection<ResumeSkill.ResumeSkill> ResumeSkills { get; set; }
+        public string OwnSkills { get; set; }
         
         public ICollection<VacancyApplication> VacancyApplications { get; set; }
-
-        public Guid? CityId { get; set; }
 
     }
     
@@ -43,13 +35,6 @@ namespace CRM.DAL.Models.DatabaseModels.Resume
     {
         public void Configure(EntityTypeBuilder<Resume> item)
         {
-            item.HasMany<ResumeSkill.ResumeSkill>(i => i.ResumeSkills)
-                .WithOne(r => r.Resume)
-                .HasForeignKey(i => i.ResumeId);
-
-            item.HasOne<Language.Language>(r => r.Language);
-
-            item.HasOne<City.City>(r => r.City);
 
         }
     }

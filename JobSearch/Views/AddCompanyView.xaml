@@ -68,7 +68,7 @@
                     <TextBox FontFamily="Helvetica"
                              Name="DescriptionBox"
                              FontWeight="Light"
-                             Text="{Binding Path=KontragentInfo, UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding Path=Info, UpdateSourceTrigger=PropertyChanged}"
                              FontSize="20"
                              HorizontalAlignment="Center"
                              Foreground="White"

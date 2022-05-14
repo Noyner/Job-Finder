@@ -19,8 +19,8 @@ namespace CRM.DAL.Models.DatabaseModels.Kontragents
         
         public Guid? IconId { get; set; }
         
-        public ICollection<KontragentInfo.KontragentInfo> KontragentInfo { get; set; } //social media links etc
-        
+        public string Info { get; set; }
+
         public ICollection<KontragentUser> KontragentUsers { get; set; }
         
         public ICollection<Vacancies.Vacancy> Vacancies { get; set; }
@@ -35,10 +35,6 @@ namespace CRM.DAL.Models.DatabaseModels.Kontragents
                 .HasForeignKey(r => r.KontragentId);
             
             item.HasMany(i => i.Vacancies)
-                .WithOne(r => r.Kontragent)
-                .HasForeignKey(r => r.KontragentId);
-            
-            item.HasMany(i => i.KontragentInfo)
                 .WithOne(r => r.Kontragent)
                 .HasForeignKey(r => r.KontragentId);
 

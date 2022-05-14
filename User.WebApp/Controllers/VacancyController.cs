@@ -50,9 +50,6 @@ namespace CRM.User.WebApp.Controllers
             QueryIncludeOptimizedManager.AllowIncludeSubPath = true;
 
             return userDbContext.Vacancies
-                .IncludeOptimized(p => p.VacancySkills)
-                .IncludeOptimized(r=>r.Language)
-                .IncludeOptimized(r=>r.City)
                 .IncludeOptimized(p => p.Kontragent);
         }
 
@@ -90,7 +87,7 @@ namespace CRM.User.WebApp.Controllers
             }
 
             var item = await UserDbContext.Vacancies
-                .IncludeOptimized(i => i.VacancySkills)
+                .IncludeOptimized(i => i.RequiredSkills)
                 .FirstOrDefaultAsync(i => i.Id == key, cancellationToken);
 
             if (item == null)

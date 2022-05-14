@@ -45,12 +45,9 @@ namespace JobSearch.Views
                 if (vacancy != null)
                 {
                     VacancyTitle.Text = vacancy.Title;
-
                     VacancyDescription.Text = vacancy.FullDescription;
-
-                    VacancySkills.Text = String.Join(", ", vacancy.VacancySkills);
-
-                    VacancyCity.Text = vacancy.City.Title;
+                    RequiredSkills.Text = vacancy.RequiredSkills;
+                    VacancyCity.Text = vacancy.City;
                 }
             }
         }

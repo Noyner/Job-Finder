@@ -55,7 +55,7 @@ namespace JobSearch.Views
             await GetUserData();
             NameField.Text = $"{user.FirstName} {user.LastName}";
             EmailField.Text = user.Email;
-            //CityField.Text = user.City.Title;
+            CityField.Text = user.City;
             GenderField.Text = user.Gender.ToString();
             PhoneField.Text = user.PhoneNumber;
         }

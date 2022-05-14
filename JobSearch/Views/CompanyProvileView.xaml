@@ -79,7 +79,7 @@
                              Opacity="0.8"
                              Height="35"
                              Margin="63,5,0,5"/>
-                        <TextBlock Text="{Binding Path=KontragentInfo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        <TextBlock Text="{Binding Path=Info, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                  Name="KontragentInfoField" 
                                  FontFamily="Helvetica"
                                  FontWeight="DemiBold"

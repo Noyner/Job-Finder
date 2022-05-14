@@ -13,10 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using CRM.DAL.Models.DatabaseModels.City;
-using CRM.DAL.Models.DatabaseModels.Skill;
 using CRM.DAL.Models.DatabaseModels.Vacancies;
-using CRM.DAL.Models.DatabaseModels.VacancySkills;
+using CRM.DAL.Models.DatabaseModels;
 using CRM.IdentityServer.ViewModels.Account;
 using Dapper;
 using Newtonsoft.Json;
@@ -44,7 +42,9 @@ namespace JobSearch.Views
             {
                 title = vacancyViewModel.Title,
                 fullDescription = vacancyViewModel.FullDescription,
-                city = new City(){Title = CityBox.Text}
+                city = vacancyViewModel.City,
+                salary = vacancyViewModel.Salary,
+                requiredSkills = vacancyViewModel.RequiredSkills
                 //vacancySkills = SkillsBox.Text.Replace(" ","").Split(',').Select(x => new VacancySkill() { Skill = new Skill() { Title = x, Id = new Guid()}, Id = new Guid() }).ToList()
             };
 

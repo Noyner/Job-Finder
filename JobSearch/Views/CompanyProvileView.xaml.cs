@@ -23,7 +23,7 @@ namespace JobSearch.Views
             this.DataContext = kontragentViewModel;
         }
 
-        public async Task GetUserData()
+        public async Task GetCompanyData()
         {
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Storage.Get()}");
             var response = await client.GetAsync($"https://localhost:5201/api/v1/Kontragent");
@@ -31,7 +31,7 @@ namespace JobSearch.Views
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var rs = await response.Content.ReadAsStringAsync();
-                kontragentViewModel = JsonConvert.DeserializeObject<Kontragent>(rs);
+                kontragentViewModel = JsonConvert.DeserializeObject<Kontragent>(rs); 
             }
             else
             {
@@ -46,9 +46,9 @@ namespace JobSearch.Views
 
         private async void CompanyProvileView_OnLoaded(object sender, RoutedEventArgs e)
         {
-            await GetUserData();
+            await GetCompanyData();
             TitleField.Text = kontragentViewModel.Title;
-            //KontragentInfoField.Text = kontragentViewModel.KontragentInfo;
+            KontragentInfoField.Text = kontragentViewModel.Info;
         }
     }
 }

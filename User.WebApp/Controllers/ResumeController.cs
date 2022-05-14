@@ -47,9 +47,6 @@ namespace CRM.User.WebApp.Controllers
             QueryIncludeOptimizedManager.AllowIncludeSubPath = true;
 
             return userDbContext.Resumes
-                .IncludeOptimized(p => p.ResumeSkills.Select(r=>r.Skill))
-                .IncludeOptimized(r=>r.Language)
-                .IncludeOptimized(r=>r.City)
                 .IncludeOptimized(p => p.Creator);
         }
         
@@ -67,7 +64,7 @@ namespace CRM.User.WebApp.Controllers
             }
 
             var item = await UserDbContext.Resumes
-                .IncludeOptimized(i => i.ResumeSkills)
+                .IncludeOptimized(i => i.OwnSkills)
                 .FirstOrDefaultAsync(i => i.Id == key, cancellationToken);
 
             if (item == null)
