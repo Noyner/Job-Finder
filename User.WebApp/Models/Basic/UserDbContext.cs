@@ -1,6 +1,5 @@
 using CRM.DAL.Models.DatabaseModels.Files;
 using CRM.DAL.Models.DatabaseModels.Kontragents;
-using CRM.DAL.Models.DatabaseModels.KontragentUsers;
 using CRM.DAL.Models.DatabaseModels.Users;
 using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
@@ -29,9 +28,6 @@ namespace CRM.User.WebApp.Models.Basic
         
         public DbSet<DAL.Models.DatabaseModels.Kontragents.Kontragent> Kontragents { get; set; }
         
-        public DbSet<KontragentUser> KontragentUsers { get; set; }
-        
-        
         public DbSet<DAL.Models.DatabaseModels.Resume.Resume> Resumes { get; set; }
 
 
@@ -47,7 +43,6 @@ namespace CRM.User.WebApp.Models.Basic
             modelBuilder.ApplyConfiguration(new UserClaimConfiguration());
             modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
             
-            modelBuilder.ApplyConfiguration(new KontragentUserConfiguration());
             modelBuilder.ApplyConfiguration(new KontragentConfiguration());
             modelBuilder.ApplyConfiguration(new FileConfiguration());
 

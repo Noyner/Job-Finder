@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CRM.DAL.Models.DatabaseModels.Files;
-using CRM.DAL.Models.DatabaseModels.KontragentUsers;
+using CRM.DAL.Models.DatabaseModels.Kontragents;
 using CRM.DAL.Models.DatabaseModels.VacancyResumes;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -35,7 +35,9 @@ namespace CRM.DAL.Models.DatabaseModels.Users
         
         public ICollection<VacancyApplication> VacancyApplications { get; set; }
         
-        public ICollection<KontragentUser> KontragentUsers { get; set; }
+        public Kontragents.Kontragent? Kontragent { get; set; }
+        
+        public Guid? KontragentId { get; set; }
         
         public string City { get; set; }
         
@@ -59,6 +61,10 @@ namespace CRM.DAL.Models.DatabaseModels.Users
 
             item.Property(i => i.RegistrationDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+            item.HasOne<Kontragent>(r => r.Kontragent)
+                .WithOne(r => r.User)
+                .HasForeignKey<Kontragent>(r => r.UserId);
 
             item.HasOne<File>(r => r.Avatar);
         }

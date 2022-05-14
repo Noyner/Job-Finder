@@ -1,9 +1,0 @@
-namespace CRM.DAL.Models.DatabaseModels.KontragentUsers
-{
-    public enum KontragentUserRelationType
-    {
-        Base,
-        Staff,
-        Owner
-    }
-}

@@ -60,10 +60,13 @@ namespace CRM.User.WebApp.Controllers
         {
             var user = await userManager.GetUserAsync(User);
 
-            //!! HARDCODE !!
-            item.KontragentId = userDbContext.KontragentUsers.First(r => r.UserId == user.Id).Id;
-            //!! HARDCODE !!
-            
+            if (user.KontragentId == null)
+            {
+                return BadRequest("U haven't any own company");
+            }
+
+            item.KontragentId = user.KontragentId.Value;
+
             await userDbContext.Vacancies.AddAsync(item);
 
             await userDbContext.SaveChangesAsync();

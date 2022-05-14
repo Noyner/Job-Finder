@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using CRM.DAL.Models.DatabaseModels.Files;
 using CRM.DAL.Models.DatabaseModels.Kontragents;
-using CRM.DAL.Models.DatabaseModels.KontragentUsers;
 using CRM.User.WebApp.Models.Basic;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Query;
@@ -54,7 +52,7 @@ namespace CRM.User.WebApp.Controllers
             var item = await userDbContext.Kontragents
                 .IncludeOptimized(r => r.Icon)
                 .IncludeOptimized(r => r.Info)
-                .IncludeOptimized(r => r.KontragentUsers)
+                .IncludeOptimized(r => r.User)
                 .IncludeOptimized(r => r.Vacancies)
                 .FirstOrDefaultAsync(r=>r.Id==key);
 
@@ -72,14 +70,11 @@ namespace CRM.User.WebApp.Controllers
             var user = await userManager.GetUserAsync(User);
             
             await userDbContext.Kontragents.AddAsync(item);
-            item.KontragentUsers = new List<KontragentUser>();
-            item.KontragentUsers.Add(new KontragentUser()
-            {
-                UserId = user.Id,
-                RelationType = KontragentUserRelationType.Owner
-            });
-
+            item.UserId = user.Id;
+            
             await userDbContext.SaveChangesAsync();
+
+            user.KontragentId = item.Id;
 
            await userManager.AddToRoleAsync(user, IdentityServer.Extensions.Constants.UserRoles.Kontragent);
             
