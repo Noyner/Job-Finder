@@ -19,7 +19,7 @@ namespace CRM.DAL.Models.DatabaseModels.Kontragents
         
         public Guid? IconId { get; set; }
         
-        public ICollection<KontragentInfo.KontragentInfo> KontragentInfo { get; set; }//social media links etc
+        public ICollection<KontragentInfo.KontragentInfo> KontragentInfo { get; set; } //social media links etc
         
         public ICollection<KontragentUser> KontragentUsers { get; set; }
         

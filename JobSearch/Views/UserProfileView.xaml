@@ -195,7 +195,11 @@
                 </StackPanel>
             </Border>
             <Button x:Name="FillInfoButton" Click="FillInfoButton_OnClick" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,50" Grid.Row="1" Grid.Column="0" Visibility="Visible" Height="20" Width="100" Background="Orange" Content="Fill infromation"/>
-            <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Width="350" Height="400" BorderThickness="1" CornerRadius="15" BorderBrush="CornflowerBlue" Background="CornflowerBlue" >
+            <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Width="350" Height="400" BorderThickness="1" CornerRadius="15" BorderBrush="CornflowerBlue" Background="CornflowerBlue">
+                <StackPanel>
+                    <Button x:Name="AddCompany" Click="AddCompany_OnClick" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,20,0,0" Visibility="Visible" Height="20" Width="140" Background="Orange" Content="Create new company"/>
+                    <Button x:Name="ProfileCompany" Click="ProfileCompany_OnClick" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,20,0,0" Visibility="Visible" Height="20" Width="140" Background="Orange" Content="Company profile"/>
+                </StackPanel>
             </Border>
         </Grid>
     </Grid>

@@ -65,7 +65,6 @@ namespace JobSearch.Views
         {
             await PostData();
             MainWindow mainWindow = new MainWindow();
-            //mainWindow.Show();
             this.Close();
         }
 

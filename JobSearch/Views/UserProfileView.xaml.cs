@@ -70,5 +70,18 @@ namespace JobSearch.Views
             f.Show();
             this.Close();
         }
+
+        private void AddCompany_OnClick(object sender, RoutedEventArgs e)
+        {
+            AddCompanyView view = new AddCompanyView();
+            view.Show();
+            this.Close();
+        }
+
+        private void ProfileCompany_OnClick(object sender, RoutedEventArgs e)
+        {
+            CompanyProvileView view = new CompanyProvileView();
+            view.Show();
+        }
     }
 }
