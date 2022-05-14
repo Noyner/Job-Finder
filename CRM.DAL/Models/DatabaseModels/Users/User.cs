@@ -36,8 +36,9 @@ namespace CRM.DAL.Models.DatabaseModels.Users
         public ICollection<VacancyApplication> VacancyApplications { get; set; }
         
         public ICollection<KontragentUser> KontragentUsers { get; set; }
-
-
+        
+        public string City { get; set; }
+        
         public DateTime RegistrationDate { get; set; }
         
     }
