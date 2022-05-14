@@ -96,8 +96,6 @@ namespace CRM.User.WebApp.Controllers
             
             await userDbContext.SaveChangesAsync();
 
-           // await userManager.AddToRoleAsync(user, IdentityServer.Extensions.Constants.UserRoles.Kontragent);
-            
             return Ok(item);
         }
         

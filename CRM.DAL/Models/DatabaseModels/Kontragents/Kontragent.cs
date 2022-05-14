@@ -5,6 +5,7 @@ using CRM.DAL.Models.DatabaseModels.Files;
 using CRM.DAL.Models.DatabaseModels.KontragentUsers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Newtonsoft.Json;
 
 namespace CRM.DAL.Models.DatabaseModels.Kontragents
 {
@@ -13,12 +14,14 @@ namespace CRM.DAL.Models.DatabaseModels.Kontragents
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
       
+        [JsonProperty("title")]
         public string Title { get; set; }
         
         public File? Icon { get; set; }
         
         public Guid? IconId { get; set; }
         
+        [JsonProperty("info")]
         public string Info { get; set; }
 
         public ICollection<KontragentUser> KontragentUsers { get; set; }
