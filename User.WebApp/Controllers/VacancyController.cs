@@ -50,7 +50,24 @@ namespace CRM.User.WebApp.Controllers
             QueryIncludeOptimizedManager.AllowIncludeSubPath = true;
 
             return userDbContext.Vacancies
-                .IncludeOptimized(p => p.Kontragent);
+                .IncludeOptimized(p => p.Kontragent.Icon);
+        }
+        
+        /// <summary>
+        ///     Get Vacancies.
+        /// </summary>
+        /// <returns>The requested Vacancies.</returns>
+        /// <response code="200">The Vacancies was successfully retrieved.</response>
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(Vacancy), StatusCodes.Status200OK)]
+        [EnableQuery(HandleNullPropagation = HandleNullPropagationOption.False)]
+        public async Task<Vacancy> Get(Guid key)
+        {
+            QueryIncludeOptimizedManager.AllowIncludeSubPath = true;
+
+            return await userDbContext.Vacancies
+                .IncludeOptimized(p => p.Kontragent.Icon)
+                .FirstOrDefaultAsync(r=>r.Id==key);
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
