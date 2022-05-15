@@ -15,6 +15,8 @@ namespace CRM.DAL.Models.DatabaseModels.Resume
         
         public User Creator { get; set; }
         
+        public string Title { get; set; }
+        
         public string CreatorId { get; set; }
         
         public string FullDescription { get; set; }
