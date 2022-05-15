@@ -5,10 +5,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using CRM.DAL.Models.DatabaseModels.Resume;
+using CRM.IdentityServer.Extensions.Constants;
 using CRM.User.WebApp.Models.Basic;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNet.OData.Routing;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -34,6 +37,7 @@ namespace CRM.User.WebApp.Controllers
             this.mapper = mapper;
         }
         
+        
         /// <summary>
         ///     Get Vacancies.
         /// </summary>
@@ -41,13 +45,17 @@ namespace CRM.User.WebApp.Controllers
         /// <response code="200">The Vacancies was successfully retrieved.</response>
         [Produces("application/json")]
         [ProducesResponseType(typeof(IEnumerable<Resume>), StatusCodes.Status200OK)]
-        [EnableQuery(HandleNullPropagation = HandleNullPropagationOption.False)]
-        public IEnumerable<Resume> Get()
+        [EnableQuery(HandleNullPropagation = HandleNullPropagationOption.True)]
+        public async Task<IEnumerable<Resume>> Get()
         {
             QueryIncludeOptimizedManager.AllowIncludeSubPath = true;
 
+            var user = await userManager.GetUserAsync(User);
+            var roles = await userManager.GetRolesAsync(user);
+            
             return userDbContext.Resumes
-                .IncludeOptimized(p => p.Creator);
+                .IncludeOptimized(p => p.Creator.Avatar)
+                .Where(r=> (!roles.Contains(UserRoles.Kontragent) && r.CreatorId == user.Id)||roles.Contains(UserRoles.Kontragent));
         }
         
         [Produces("application/json")]
