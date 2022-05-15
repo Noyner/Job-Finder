@@ -2,7 +2,7 @@ namespace CRM.DAL.Models.DatabaseModels.Resume
 {
     public enum EmploymentType
     {
-        Base,
+        Unknown,
         FullTime,
         PartTime
     }

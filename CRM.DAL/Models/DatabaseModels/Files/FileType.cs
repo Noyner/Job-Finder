@@ -2,7 +2,7 @@ namespace CRM.DAL.Models.DatabaseModels.Files
 {
     public enum FileType
     {
-        Base,
+        Unknown,
         Icon,
         Cover,
         Picture

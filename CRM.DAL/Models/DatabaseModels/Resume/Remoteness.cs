@@ -2,7 +2,7 @@ namespace CRM.DAL.Models.DatabaseModels.Resume
 {
     public enum Remoteness
     {
-        Base,
+        Unknown,
         Remote,
         RemotePossible,
         RemoteImpossible
