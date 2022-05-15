@@ -15,7 +15,7 @@ namespace CRM.DAL.Models.DatabaseModels.Files
 
         public string ContentType { get; set; }
 
-        public string Path { get; set; }
+        public string Base64Content { get; set; }
 
         public DateTime? CreatedAt { get; set; }
 

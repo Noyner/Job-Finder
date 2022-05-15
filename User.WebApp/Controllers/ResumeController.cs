@@ -39,7 +39,7 @@ namespace CRM.User.WebApp.Controllers
         
         
         /// <summary>
-        ///     Get Vacancies.
+        ///     Get Resumes.
         /// </summary>
         /// <returns>The requested Vacancies.</returns>
         /// <response code="200">The Vacancies was successfully retrieved.</response>
@@ -56,6 +56,33 @@ namespace CRM.User.WebApp.Controllers
             return userDbContext.Resumes
                 .IncludeOptimized(p => p.Creator.Avatar)
                 .Where(r=> (!roles.Contains(UserRoles.Kontragent) && r.CreatorId == user.Id)||roles.Contains(UserRoles.Kontragent));
+        }
+        
+        /// <summary>
+        ///     Get Resumes.
+        /// </summary>
+        /// <returns>The requested Vacancies.</returns>
+        /// <response code="200">The Vacancies was successfully retrieved.</response>
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(IEnumerable<Resume>), StatusCodes.Status200OK)]
+        [EnableQuery(HandleNullPropagation = HandleNullPropagationOption.True)]
+        public async Task<IActionResult> Get(Guid key)
+        {
+            QueryIncludeOptimizedManager.AllowIncludeSubPath = true;
+
+            var user = await userManager.GetUserAsync(User);
+            var roles = await userManager.GetRolesAsync(user);
+
+            var item = await userDbContext.Resumes
+                .IncludeOptimized(p => p.Creator.Avatar)
+                .FirstOrDefaultAsync(r => r.Id == key);
+
+            if (item.CreatorId != user.Id && !roles.Contains(UserRoles.Kontragent))
+            {
+                return Forbid("Kontragent role required");
+            }
+
+            return Ok(item);
         }
         
         [Produces("application/json")]

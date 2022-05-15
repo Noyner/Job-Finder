@@ -62,7 +62,7 @@ namespace CRM.User.WebApp.Configurations
         //
         //             options.Events.OnRedirectToIdentityProvider = ctx =>
         //             {
-        //                 if (ctx.Request.Path.StartsWithSegments("/api"))
+        //                 if (ctx.Request.Base64Content.StartsWithSegments("/api"))
         //                 {
         //                     if (ctx.Response.StatusCode == (int) HttpStatusCode.OK)
         //                     {
