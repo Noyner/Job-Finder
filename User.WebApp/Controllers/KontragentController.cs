@@ -69,16 +69,17 @@ namespace CRM.User.WebApp.Controllers
         public async Task<IActionResult> Post([FromBody]Kontragent item)
         {
             var user = await userManager.GetUserAsync(User);
-            
-            await userDbContext.Kontragents.AddAsync(item);
-            item.UserId = user.Id;
-            
-            await userDbContext.SaveChangesAsync();
 
-            user.KontragentId = item.Id;
+            item.Id=Guid.NewGuid();
+            
+            item.UserId = user.Id;
+            await userDbContext.Kontragents.AddAsync(item);
+            
+        user.KontragentId = item.Id;
+            
 
            await userManager.AddToRoleAsync(user, IdentityServer.Extensions.Constants.UserRoles.Kontragent);
-            
+            await userDbContext.SaveChangesAsync();
             return Ok(item);
         }
     }

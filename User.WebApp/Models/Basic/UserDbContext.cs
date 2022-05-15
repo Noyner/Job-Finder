@@ -23,7 +23,7 @@ namespace CRM.User.WebApp.Models.Basic
 
         public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
 
-        public DbSet<File> Files { get; set; }
+        public DbSet<DAL.Models.DatabaseModels.Files.File> Files { get; set; }
         
         
         public DbSet<DAL.Models.DatabaseModels.Kontragents.Kontragent> Kontragents { get; set; }
