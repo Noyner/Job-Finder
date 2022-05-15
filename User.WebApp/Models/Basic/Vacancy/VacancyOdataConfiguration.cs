@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,7 @@ namespace CRM.User.WebApp.Models.Basic.Vacancy
             
             item.OrderBy();
             item.HasKey(p => p.Id);
+            
         }
     }
 }

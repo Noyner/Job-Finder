@@ -45,7 +45,7 @@ namespace CRM.User.WebApp.Controllers
         /// <response code="200">The Vacancies was successfully retrieved.</response>
         [Produces("application/json")]
         [ProducesResponseType(typeof(IEnumerable<Resume>), StatusCodes.Status200OK)]
-        [EnableQuery(HandleNullPropagation = HandleNullPropagationOption.True)]
+        [EnableQuery(HandleNullPropagation = HandleNullPropagationOption.False)]
         public async Task<IEnumerable<Resume>> Get()
         {
             QueryIncludeOptimizedManager.AllowIncludeSubPath = true;

@@ -69,6 +69,7 @@ namespace CRM.User.WebApp.Controllers
                 .IncludeOptimized(p => p.Kontragent.Icon)
                 .FirstOrDefaultAsync(r=>r.Id==key);
         }
+        
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
             Roles = UserRoles.Kontragent)]

@@ -10,6 +10,7 @@ using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Z.EntityFramework.Plus;
 
@@ -49,6 +50,15 @@ namespace CRM.User.WebApp.Controllers
         [Produces("application/json")]
         public async Task<IActionResult> Post([FromBody]VacancyApplication item)
         {
+
+            var resume = await userDbContext.Resumes.FirstOrDefaultAsync(r => r.Id == item.ResumeId);
+            var user = await userManager.GetUserAsync(User);
+
+            if (resume.CreatorId != user.Id)
+            {
+                return BadRequest("Resume creatorId different from your user id!");
+            }
+            
             await userDbContext.VacancyApplications.AddAsync(item);
 
             await userDbContext.SaveChangesAsync();
