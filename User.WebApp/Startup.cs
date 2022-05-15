@@ -120,7 +120,7 @@ namespace CRM.User.WebApp
                 });
 
             // var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-            // var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            // var xmlPath = Base64Content.Combine(AppContext.BaseDirectory, xmlFile);
             // services.ConfigureSwagger(xmlPath);
             services.ConfigureSwaggerBearer(Configuration);
             
