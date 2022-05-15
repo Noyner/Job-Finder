@@ -60,7 +60,7 @@ namespace CRM.User.WebApp.Controllers
         /// <response code="200">The Vacancies was successfully retrieved.</response>
         [Produces("application/json")]
         [ProducesResponseType(typeof(Vacancy), StatusCodes.Status200OK)]
-        [EnableQuery(HandleNullPropagation = HandleNullPropagationOption.False)]
+        [EnableQuery(HandleNullPropagation = HandleNullPropagationOption.True)]
         public async Task<Vacancy> Get(Guid key)
         {
             QueryIncludeOptimizedManager.AllowIncludeSubPath = true;
