@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using CRM.DAL.Models.DatabaseModels.VacancyResumes;
+using CRM.IdentityServer.Extensions.Constants;
 using CRM.User.WebApp.Models.Basic;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Query;
@@ -40,11 +41,24 @@ namespace CRM.User.WebApp.Controllers
         [Produces("application/json")]
         [ProducesResponseType(typeof(IEnumerable<VacancyApplication>), StatusCodes.Status200OK)]
         [EnableQuery(HandleNullPropagation = HandleNullPropagationOption.False)]
-        public IEnumerable<VacancyApplication> Get()
+        public async Task<IActionResult> Get()
         {
             QueryIncludeOptimizedManager.AllowIncludeSubPath = true;
 
-            return userDbContext.VacancyApplications;
+            var user = await userManager.GetUserAsync(User);
+
+            var items= userDbContext
+                .VacancyApplications
+                .IncludeOptimized(r=>r.Resume.Creator)
+                .IncludeOptimized(r=>r.Vacancy.Kontragent);
+
+            items = items.Where(r =>
+                r.Resume.CreatorId == user.Id ||
+                r.Vacancy.Kontragent.UserId == user.Id
+            );
+
+
+            return Ok(items);
         }
 
         [Produces("application/json")]
