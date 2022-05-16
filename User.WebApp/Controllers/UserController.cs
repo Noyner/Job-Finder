@@ -52,6 +52,7 @@ namespace CRM.User.WebApp.Controllers
                 .IncludeOptimized(i=>i.Kontragent)
                 .IncludeOptimized(i=>i.VacancyApplications.Select(r=>r.Vacancy))
                 .IncludeOptimized(r=>r.UserClaims)
+                .IncludeOptimized(r=>r.Avatar)
                 .FirstOrDefaultAsync(i => i.Id == userId);
             
             return StatusCode(StatusCodes.Status200OK, mapper.Map<UserProfileDto>(user));
