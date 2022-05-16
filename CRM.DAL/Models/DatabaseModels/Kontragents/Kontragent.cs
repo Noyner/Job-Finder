@@ -15,7 +15,7 @@ namespace CRM.DAL.Models.DatabaseModels.Kontragents
         
         public string Title { get; set; }
         
-        public File? Icon { get; set; }
+        public File Icon { get; set; }
         
         public Guid? IconId { get; set; }
         
