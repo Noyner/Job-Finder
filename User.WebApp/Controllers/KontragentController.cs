@@ -46,7 +46,10 @@ namespace CRM.User.WebApp.Controllers
            
            return StatusCode(StatusCodes.Status200OK, items);
         }
-
+        
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(Kontragent), StatusCodes.Status200OK)]
+        [EnableQuery(HandleNullPropagation = HandleNullPropagationOption.True)]
         public async Task<IActionResult> Get(Guid key)
         {
             var item = await userDbContext.Kontragents
