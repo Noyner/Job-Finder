@@ -1,23 +1,19 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Reflection;
 using AspNetCore.ReCaptcha;
-using CRM.IdentityServer.Models;
 using CRM.IdentityServer.Configuration;
-using CRM.IdentityServer.Services;
-using CRM.ServiceCommon.Configurations;
+using CRM.IdentityServer.Models;
+using Hangfire;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.DataProtection;
-using Hangfire;
-using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 
 namespace CRM.IdentityServer
 {
@@ -37,26 +33,16 @@ namespace CRM.IdentityServer
             services.AddCors();
 
             services.AddMvc().AddNewtonsoftJson(options =>
-                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "ToDo API",
-                    Description = "An ASP.NET Core Web API for managing ToDo items",
-                    TermsOfService = new Uri("https://example.com/terms"),
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Example Contact",
-                        Url = new Uri("https://example.com/contact")
-                    },
-                    License = new OpenApiLicense
-                    {
-                        Name = "Example License",
-                        Url = new Uri("https://example.com/license")
-                    }
+                    Title = "Identity api",
+                    Description = "API for Identity Server JobFinder CRM",
+                    TermsOfService = new Uri("https://example.com/terms")
                 });
             });
             
@@ -97,12 +83,7 @@ namespace CRM.IdentityServer
             services.AddDataProtection(options => options.ApplicationDiscriminator = "Identity server"
                 )
                 .PersistKeysToDbContext<IdentityServerDbContext>();
-            
-            
-            services.AddReCaptcha(Configuration.GetSection("ReCaptcha"));
 
-            services.AddHangfire(config => config.UseInMemoryStorage());
-            
         }
 
         [SuppressMessage("ReSharper", "UnusedMember.Global")]
@@ -119,20 +100,10 @@ namespace CRM.IdentityServer
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCookiePolicy(new CookiePolicyOptions { MinimumSameSitePolicy = SameSiteMode.Lax, Secure = CookieSecurePolicy.None });
-
-            app.UseCors(b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-
             app.UseIdentityServer();
 
             app.UseRouting();
 
-            app.UseHangfireServer(options: new BackgroundJobServerOptions()
-            {
-                Queues = new[] {"identity"},
-                ServerName = "Identity"
-            });
-            
             app.UseAuthorization();
             app.UseStaticFiles();
 
@@ -159,7 +130,6 @@ namespace CRM.IdentityServer
                 });
             }
             
-            RecurringJob.AddOrUpdate<AccountsService>(j => j.CleanUnconfirmedAccounts(), Cron.Daily());
         }
     }
 }

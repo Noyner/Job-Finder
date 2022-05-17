@@ -8,13 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Update="wwwroot">
-            <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        </Folder>
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Include="AspNetCore.ReCaptcha" Version="1.5.3" />
         <PackageReference Include="Hangfire.AspNetCore" Version="1.7.25" />
         <PackageReference Include="Hangfire.InMemory" Version="0.3.4" />
@@ -33,14 +26,6 @@
         <ProjectReference Include="..\CRM.DAL\CRM.DAL.csproj" />
         <ProjectReference Include="..\IdentityServer.Extensions\IdentityServer.Extensions.csproj" />
         <ProjectReference Include="..\ServiceCommon\ServiceCommon.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="Grants" />
-        <Folder Include="wwwroot\assets" />
-        <Folder Include="wwwroot\css" />
-        <Folder Include="wwwroot\images" />
-        <Folder Include="wwwroot\lib\jquery-validation-unobtrusive" />
     </ItemGroup>
 
     <ItemGroup>

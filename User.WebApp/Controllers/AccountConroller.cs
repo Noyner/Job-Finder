@@ -73,50 +73,8 @@ namespace CRM.User.WebApp.Controllers
 
         
 
-            return response.IsError ? StatusCode(400, response.Error) : StatusCode(StatusCodes.Status200OK, new TokenResponse(response.AccessToken, response.RefreshToken));
+            return response.IsError ? StatusCode(400, response.Error) : StatusCode(StatusCodes.Status200OK, new TokenResponse(response.AccessToken));
         }
         
-        
-        /// <summary>
-        /// Get new auth token by refresh token
-        /// </summary>
-        /// <param name="refreshToken">Refresh token</param>
-        /// <remarks>
-        ///     Время жизни токена авторизации - 5 минут
-        /// </remarks>
-        /// <response code="200">Auth and Refresh tokens</response>
-        /// <response code="404">User not found</response>
-        /// <response code="404">User's roles not found</response>
-        /// <response code="500">Token refresh error</response>
-        [ProducesResponseType(typeof(TokenResponse), 200)]
-        [AllowAnonymous]
-        [HttpPost]
-        [Produces("application/json")]
-        [Route("[action]")]
-        public async Task<ActionResult> Refresh([FromBody] string refreshToken)
-        {
-            var clientHandler = new HttpClientHandler
-            {
-                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
-            };
-            var client = new HttpClient(clientHandler);
-        
-            var response = await client.RequestRefreshTokenAsync(new RefreshTokenRequest
-            {
-                Address = configuration.GetSection("IdentityServerClient:AuthorizationServiceUrl").Value +
-                          "/connect/token",
-                ClientId = configuration.GetSection("IdentityServerClient:ClientId").Value,
-                ClientSecret = configuration.GetSection("IdentityServerClient:ClientSecret").Value,
-        
-                RefreshToken = refreshToken
-            });
-        
-            if (response.IsError)
-            {
-                return StatusCode(400, response.Error);
-            }
-
-            return StatusCode(StatusCodes.Status200OK, new TokenResponse(response.AccessToken, response.RefreshToken));
-        }
     }
 }
