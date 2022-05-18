@@ -6,16 +6,11 @@
         /// Токен аутентификации
         /// </summary>
         public string Token { get; }
+        
 
-        /// <summary>
-        /// Токен обновления
-        /// </summary>
-        public string RefreshToken { get; }
-
-        public TokenResponse(string token, string refreshToken)
+        public TokenResponse(string token)
         {
             Token = token;
-            RefreshToken = refreshToken;
         }
     }
 }

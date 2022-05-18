@@ -12,8 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ClaimTypes = CRM.IdentityServer.Extensions.Constants.ClaimTypes;
-using GrantTypes = IdentityServer4.Models.GrantTypes;
+using ClaimTypes = System.Security.Claims.ClaimTypes;
 
 namespace CRM.IdentityServer.Configuration
 {
@@ -24,8 +23,8 @@ namespace CRM.IdentityServer.Configuration
         {
             services.AddIdentity<User, Role>(options =>
                 {
-                    options.Password.RequireDigit = true;
-                    options.Password.RequireLowercase = true;
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequiredLength = 6;
                     options.Password.RequireUppercase = false;
@@ -37,7 +36,7 @@ namespace CRM.IdentityServer.Configuration
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = false;
-                options.Password.RequiredLength = 4;
+                options.Password.RequiredLength = 6;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
@@ -56,7 +55,7 @@ namespace CRM.IdentityServer.Configuration
 
                     // this enables automatic token cleanup. this is optional.
                     options.DefaultSchema = "public";
-                    options.EnableTokenCleanup = true;
+                    options.EnableTokenCleanup = false;
                     options.TokenCleanupInterval = 3600; // interval in seconds
                     
                 })
@@ -75,34 +74,27 @@ namespace CRM.IdentityServer.Configuration
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
-                new IdentityResource()
+                new IdentityResource
                 {
                     Name = Scopes.Roles,
                     DisplayName = "Your user roles",
                     Required = true,
-                    UserClaims = new List<string>() { System.Security.Claims.ClaimTypes.Role }
+                    UserClaims = new List<string> { ClaimTypes.Role }
                 },
-                new IdentityResource()
+                new IdentityResource
                 {
                     Name = Scopes.SecurityStamp,
                     DisplayName = "Your security stamp",
                     Required = true,
-                    UserClaims = new List<string>() { ClaimTypes.SecurityStamp }
+                    UserClaims = new List<string> { Extensions.Constants.ClaimTypes.SecurityStamp }
                 },
-                new IdentityResource()
+                new IdentityResource
                 {
                     Name = Scopes.UserId,
                     DisplayName = "Your user id",
                     Required = true,
-                    UserClaims = new List<string>() { ClaimTypes.UserId }
-                },
-                new IdentityResource()
-                {
-                    Name = Scopes.Policies,
-                    DisplayName = "Your user policies",
-                    Required = true,
-                    UserClaims = new List<string>() { ClaimTypes.UserPolicy }
-                },
+                    UserClaims = new List<string> { Extensions.Constants.ClaimTypes.UserId }
+                }
             };
         }
 
@@ -142,39 +134,12 @@ namespace CRM.IdentityServer.Configuration
                             Scopes.Roles,
                             Scopes.UserId
                         },
-                        AllowOfflineAccess = true,
-                        AccessTokenLifetime = 300,
-                        AuthorizationCodeLifetime = 600,
-                        AbsoluteRefreshTokenLifetime = 2592000,
-                        SlidingRefreshTokenLifetime = 1296000,
+                        AllowOfflineAccess = false,
                         RefreshTokenExpiration = TokenExpiration.Sliding,
                         
                     });
-
-                    continue;
                 }
-
-                identityClients.Add(new Client()
-                {
-                    ClientName = clientName,
-                    ClientId = clientId,
-                    AllowedGrantTypes = GrantTypes.Code,
-                    ClientSecrets =
-                    {
-                        new Secret(clientSecret.Sha256())
-                    },
-                    AlwaysIncludeUserClaimsInIdToken = true,
-                    AllowedScopes =
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        Scopes.Roles,
-                        Scopes.SecurityStamp,
-                        Scopes.Policies,
-                        Scopes.Kontragents
-                    },
-                    RedirectUris = { $"{url}/signin-oidc" },
-                });
+                
             }
 
             return identityClients;
